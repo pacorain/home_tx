@@ -2,6 +2,8 @@ access_token: !secret konnected_access_token
 api_host: !secret konnected_api_host
 devices:
   - id: !secret konnected_board_id
+    host: !secret konnected_host
+    port: !secret konnected_port
     discovery: false
     binary_sensors:
       - zone: 1
