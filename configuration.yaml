@@ -1,23 +1,7 @@
-# Override the default config because I'm tired of seeing Home Assistant Cloud
-config: 
+default_config:
+
 frontend:
   themes: !include_dir_merge_named themes
-history:
-input_boolean: !include input/boolean.yaml
-input_datetime: !include input/datetime.yaml
-input_number: !include input/number.yaml
-input_select: !include input/select.yaml
-input_text: !include input/text.yaml
-logbook:
-map:
-mobile_app:
-person:
-ssdp: 
-sun:
-system_health:
-updater:
-zeroconf:
-zone:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
