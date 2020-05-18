@@ -1,0 +1,27 @@
+access_token: !secret konnected_access_token
+api_host: !secret konnected_api_host
+devices:
+  - id: !secret konnected_board_id
+    discovery: false
+    binary_sensors:
+      - zone: 1
+        type: door
+        name: 'Front/Garage Door'
+      - zone: 2
+        type: window
+        name: 'Zone 2'
+      - zone: 3
+        type: window
+        name: 'Zone 3'
+      - zone: 4
+        type: window
+        name: 'Zone 4'
+      - zone: 5
+        type: window
+        name: 'Zone 5'
+      - zone: 6
+        type: window
+        name: 'Zone 6'
+    switches:
+      - zone: out
+        name: Siren
