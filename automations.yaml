@@ -1,0 +1,27 @@
+- id: '1589767890705'
+  alias: AC Leak Notification
+  description: Notify Austin and Rachael when a leak is detected
+  trigger:
+  - entity_id: sensor.ac_leak_detector
+    platform: state
+    to: '255'
+  condition: []
+  action:
+  - data:
+      data:
+        push:
+          sound:
+            critical: 1
+            name: default
+      message: A leak has been detected near the air conditioner!
+      title: Leak Detected
+    service: notify.mobile_app_austins_iphone
+  - data:
+      data:
+        push:
+          sound:
+            critical: 1
+            name: default
+      message: A leak has been detected near the air conditioner!
+      title: Leak Detected
+    service: notify.mobile_app_rachaels_iphone
