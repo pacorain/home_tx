@@ -25,3 +25,31 @@
       message: A leak has been detected near the air conditioner!
       title: Leak Detected
     service: notify.mobile_app_rachaels_iphone
+- id: '1589774515252'
+  alias: Therapy Notification
+  description: Notify Rachael when Austin arrives at Therapy
+  trigger:
+  - entity_id: person.austin_rainwater
+    event: enter
+    platform: zone
+    zone: zone.therapy
+  condition: []
+  action:
+  - data:
+      message: Austin has arrived at therapy
+      title: Location Update
+    service: notify.mobile_app_rachaels_iphone
+- id: '1589774699215'
+  alias: Therapy -> Home Notification
+  description: Notify Rachael when Austin leaves therapy
+  trigger:
+  - entity_id: person.austin_rainwater
+    event: leave
+    platform: zone
+    zone: zone.therapy
+  condition: []
+  action:
+  - data:
+      message: Austin has left therapy
+      title: Location Update
+    service: notify.mobile_app_rachaels_iphone
