@@ -1,0 +1,14 @@
+homekit:
+  name: Home Assistant
+  ip_address: 10.0.1.2
+  filter:
+    include_domain:
+      - alarm-control-panel
+      - light
+      - sensor
+      - switch
+      - binary_sensor
+      - climate
+      - fan
+    exclude_entities:
+      - switch.siren

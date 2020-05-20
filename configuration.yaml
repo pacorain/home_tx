@@ -17,3 +17,5 @@ script: !include scripts.yaml
 scene: !include scenes.yaml
 
 konnected: !include konnected.yaml
+
+homekit: !include integrations/homekit.yaml

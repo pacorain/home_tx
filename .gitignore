@@ -8,6 +8,8 @@
 !*.md
 !automations/
 !automations/*
+!integrations/
+!integrations/*
 
 # Ignore folders.
 .storage
