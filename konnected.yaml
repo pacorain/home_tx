@@ -11,19 +11,19 @@ devices:
         name: 'Front/Garage Door'
       - zone: 2
         type: window
-        name: 'Zone 2'
+        name: 'Living Room Windows'
       - zone: 3
         type: window
-        name: 'Zone 3'
+        name: 'Kitchen Windows'
       - zone: 4
         type: window
-        name: 'Zone 4'
+        name: 'Loft Windows'
       - zone: 5
         type: window
-        name: 'Zone 5'
+        name: 'Nursery/Office Windows'
       - zone: 6
         type: window
-        name: 'Zone 6'
+        name: 'Master Bedroom Windows'
     switches:
       - zone: out
         name: Siren
