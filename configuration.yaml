@@ -17,6 +17,9 @@ tts:
 camera:
  - platform: aarlo
 
+recorder:
+  db_url: !secret mysql_connection_string
+
 notify:
   - platform: group
     name: everyone_ios
