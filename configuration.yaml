@@ -17,6 +17,14 @@ tts:
 camera:
  - platform: aarlo
 
+notify:
+  - platform: group
+    name: everyone_ios
+    services:
+      - service: mobile_app_austins_iphone
+      - service: mobile_app_rachaels_iphone
+   
+
 # Integrations
 
 konnected: !include integrations/konnected.yaml
