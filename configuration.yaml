@@ -16,6 +16,11 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-konnected: !include konnected.yaml
+camera:
+ - platform: aarlo
 
+# Integrations
+
+konnected: !include integrations/konnected.yaml
 homekit: !include integrations/homekit.yaml
+aarlo: !include integrations/aarlo.yaml
