@@ -18,6 +18,9 @@ tts:
 camera:
  - platform: aarlo
 
+recorder:
+  db_url: !secret mysql_connection_string
+
 notify:
   - platform: group
     name: everyone_ios
@@ -29,5 +32,4 @@ notify:
 # Integrations
 
 konnected: !include integrations/konnected.yaml
-homekit: !include integrations/homekit.yaml
 aarlo: !include integrations/aarlo.yaml
