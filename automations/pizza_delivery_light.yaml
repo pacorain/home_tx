@@ -1,0 +1,23 @@
+- id: pizza_delivery_light
+  alias: Turn on the flood light when pizza is delivering
+  trigger:
+    - platform: event
+      event_type: ifttt_webhook_received
+      event_data: 
+        content: dominos_delivery
+  action:
+    - service: light.turn_on
+      entity_id: light.driveway_light
+    - service: timer.start
+      entity_id: timer.pizza_delivery_light
+
+- id: end_pizza_delivery_light
+  alias: Turn off the light after pizza is delivered
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.pizza_delivery_light
+  action:
+    - service: light.turn_off
+      entity_id: light.driveway_light

@@ -1,0 +1,3 @@
+timer:
+  pizza_delivery_light:
+    duration: '01:00:00'
