@@ -3,18 +3,17 @@ default_config:
 frontend:
   themes: !include_dir_merge_named themes
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  base_url: https://home.heckin.io
-
-# Text to speech
-tts:
-  - platform: google_translate
+  external_url: https://home.heckin.io
+  internal_url: http://10.0.1.2:8123
 
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
+
+tts:
+  - platform: google_translate
 
 camera:
  - platform: aarlo
