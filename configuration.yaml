@@ -6,10 +6,6 @@ logger:
 frontend:
   themes: !include_dir_merge_named themes
 
-http:
-  external_url: https://home.heckin.io
-  internal_url: http://10.0.1.2:8123
-
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
