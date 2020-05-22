@@ -31,5 +31,4 @@ notify:
 # Integrations
 
 konnected: !include integrations/konnected.yaml
-homekit: !include integrations/homekit.yaml
 aarlo: !include integrations/aarlo.yaml
