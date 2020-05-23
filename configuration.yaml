@@ -1,3 +1,6 @@
+homeassistant:
+  packages: !include_dir_named integrations
+
 default_config:
 ffmpeg:
 
@@ -31,12 +34,6 @@ notify:
     method: POST
     message_param_name: content
     resource: !secret rg_server_webhook
-   
-
-# Integrations
-
-konnected: !include integrations/konnected.yaml
-aarlo: !include integrations/aarlo.yaml
 
 binary_sensor:
   - platform: ffmpeg_noise

@@ -1,29 +1,30 @@
-access_token: !secret konnected_access_token
-api_host: !secret konnected_api_host
-devices:
-  - id: !secret konnected_board_id
-    host: !secret konnected_host
-    port: !secret konnected_port
-    discovery: false
-    binary_sensors:
-      - zone: 1
-        type: door
-        name: 'Front/Garage Door'
-      - zone: 2
-        type: window
-        name: 'Living Room Windows'
-      - zone: 3
-        type: window
-        name: 'Kitchen Windows'
-      - zone: 4
-        type: window
-        name: 'Loft Windows'
-      - zone: 5
-        type: window
-        name: 'Nursery/Office Windows'
-      - zone: 6
-        type: window
-        name: 'Master Bedroom Windows'
-    switches:
-      - zone: out
-        name: Siren
+konnected:
+  access_token: !secret konnected_access_token
+  api_host: !secret konnected_api_host
+  devices:
+    - id: !secret konnected_board_id
+      host: !secret konnected_host
+      port: !secret konnected_port
+      discovery: false
+      binary_sensors:
+        - zone: 1
+          type: door
+          name: 'Front/Garage Door'
+        - zone: 2
+          type: window
+          name: 'Living Room Windows'
+        - zone: 3
+          type: window
+          name: 'Kitchen Windows'
+        - zone: 4
+          type: window
+          name: 'Loft Windows'
+        - zone: 5
+          type: window
+          name: 'Nursery/Office Windows'
+        - zone: 6
+          type: window
+          name: 'Master Bedroom Windows'
+      switches:
+        - zone: out
+          name: Siren
