@@ -26,6 +26,11 @@ notify:
     services:
       - service: mobile_app_austins_iphone
       - service: mobile_app_rachaels_iphone
+  - name: RG Discord Server
+    platform: rest
+    method: POST
+    message_param_name: content
+    resource: !secret rg_server_webhook
    
 
 # Integrations
