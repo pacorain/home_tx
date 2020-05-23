@@ -1,0 +1,2 @@
+# Uses the Bad Nest integration to control house climate
+- platform: badnest

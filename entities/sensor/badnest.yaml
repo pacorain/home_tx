@@ -1,0 +1,6 @@
+# Badnest sensor
+#
+# I'm not actually sure if this is required for temperature but it doesn't
+# hurt to include it anyway
+
+- platform: badnest

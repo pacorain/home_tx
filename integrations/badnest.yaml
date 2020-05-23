@@ -1,0 +1,11 @@
+# Bad Nest
+# 
+# We have a Nest thermostat because we bought it just before Google
+# killed the API. 
+#
+# https://github.com/USA-RedDragon/badnest
+
+badnest:
+  issue_token: !secret badnest_issue_token
+  cookie: !secret badnest_cookie
+  region: us

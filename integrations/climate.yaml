@@ -1,0 +1,6 @@
+# Climate - this is important because Texas is literally on the sun and
+# it gets so hot.
+#
+# https://www.home-assistant.io/integrations/climate/
+
+climate: !include_dir_merge_list ../entities/climate
