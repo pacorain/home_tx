@@ -35,10 +35,8 @@ aarlo: !include integrations/aarlo.yaml
 binary_sensor:
   - platform: ffmpeg_noise
     input: rtsp://10.0.1.38/img/audio.sav
-    extra_arguments: -filter:a highpass=f=300,lowpass=f=2500,volume=volume=2 -codec:a libmp3lame -ar 16000
     initial_state: false
     duration: 2
-    reset: 60
     peak: -32
 
 input_boolean:
