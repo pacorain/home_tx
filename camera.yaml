@@ -1,0 +1,6 @@
+  - platform: aarlo
+  - platform: generic
+    name: Nursery Cam
+    still_image_url: http://10.0.1.38/img/snapshot.cgi?size=1
+    verify_ssl: false
+    stream_source: rtsp://10.0.1.38/img/media.sav
