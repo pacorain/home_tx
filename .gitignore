@@ -13,6 +13,8 @@
 !custom_components/
 !entities/
 !entities/*
+!automations/
+!automations/*
 
 # Ignore folders.
 .storage

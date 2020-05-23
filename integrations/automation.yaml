@@ -1,0 +1,10 @@
+# Automations - pretty much the heart of smart homes.
+# Most automations are going to be defined in the automations/ folder--
+# however, in order to create and edit automations in the Home Assistant
+# UI, there must also be an automations.yaml file in the root config
+# folder. This file includes both.
+# 
+# https://www.home-assistant.io/integrations/automation/
+
+automation: !include_dir_merge_list ../automations
+automation frontend: !include ../automations.yaml
