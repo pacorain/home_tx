@@ -1,0 +1,7 @@
+# As opposed to one conf
+#
+# Lets us discover new devices automatically.
+#
+# https://www.home-assistant.io/integrations/zeroconf/
+
+zeroconf: ~

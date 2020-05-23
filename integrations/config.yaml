@@ -1,0 +1,5 @@
+# The config integration allows configuration via the UI.
+#
+# https://www.home-assistant.io/integrations/config/
+
+config: ~

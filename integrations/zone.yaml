@@ -1,0 +1,8 @@
+# Keeps track of zones and their history.
+#
+# We want to configure zones via the UI, but it 
+# still needs to be defined here to do that.
+#
+# https://www.home-assistant.io/integrations/zone
+
+zone: ~

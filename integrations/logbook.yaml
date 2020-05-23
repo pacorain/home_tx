@@ -1,0 +1,7 @@
+# The Home Assistant logbook keeps track of changes over time and lists them.
+#
+# No configuration needed, this just turns it on.
+#
+# https://www.home-assistant.io/integrations/logbook/
+
+logbook: ~

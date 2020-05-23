@@ -1,0 +1,8 @@
+# Do things
+#
+# In order to allow YAML configuration *and* UI configuration, this must be added twice.
+#
+# https://www.home-assistant.io/integrations/script/
+
+script folder: !include_dir_merge_named ../scripts
+script: !include ../scripts.yaml

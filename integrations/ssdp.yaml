@@ -1,0 +1,5 @@
+# Enable Simple Service Discovery Protocol (SSDP)
+#
+# https://www.home-assistant.io/integrations/ssdp/
+
+ssdp: ~

@@ -1,0 +1,8 @@
+# The system health component
+#
+# To be honest, I'm not 100% sure what exactly this offers, but
+# it seems important.
+#
+# https://www.home-assistant.io/integrations/system_health/
+
+system_health: ~

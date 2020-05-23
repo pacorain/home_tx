@@ -1,0 +1,8 @@
+# Scenes! Do multiple things at once!
+#
+# In order to create scenes via the UI *and* YAML, it must be added twice.
+#
+# https://www.home-assistant.io/integrations/scene/
+
+scene: !include_dir_merge_list ../scenes
+scene UI: !include ../scenes.yaml

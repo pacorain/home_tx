@@ -7,14 +7,18 @@
 !.gitignore
 !*.md
 !automations/
-!automations/*
+!automations/**
 !integrations/
-!integrations/*
+!integrations/**
 !custom_components/
 !entities/
-!entities/*
+!entities/**
 !automations/
-!automations/*
+!automations/**
+!scenes/
+!scenes/**
+!scripts/
+!scripts/**
 
 # Ignore folders.
 .storage

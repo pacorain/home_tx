@@ -1,0 +1,6 @@
+# State history keeps track of devices over time and stores them in a database.
+# No configuration needed here, it just needs to exist to be enabled.
+#
+# https://www.home-assistant.io/integrations/history/
+
+history: ~

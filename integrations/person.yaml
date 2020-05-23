@@ -1,0 +1,8 @@
+# Enables tracking people so we can send the data to the NSA
+# (just kidding)
+#
+# We want to configure people via the UI, so this just enables that.
+#
+# https://www.home-assistant.io/integrations/person/
+
+person: ~

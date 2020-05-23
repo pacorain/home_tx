@@ -1,0 +1,8 @@
+# Updater notifies when a Home Assistant update is available.
+#
+# It also sends basic metrics to help the Home Assistant developers,
+# which I'm happy to do.
+#
+# https://www.home-assistant.io/integrations/updater/
+
+updater: ~

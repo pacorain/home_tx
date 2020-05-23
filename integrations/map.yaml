@@ -1,0 +1,8 @@
+# Where's Paco?
+# This will help household members see it in Home Assistant.
+#
+# No configuration needed, this just turns it on.
+#
+# https://www.home-assistant.io/integrations/map/
+
+map: ~

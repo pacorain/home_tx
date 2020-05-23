@@ -1,0 +1,8 @@
+# Input boolean (True of False; On and Off)
+#
+# Most input booleans will be defined via the UI, but some may be 
+# necessary over YAML, so we're also going to include it in entities
+# 
+# https://www.home-assistant.io/integrations/input_boolean
+
+input_boolean: !include_dir_merge_named ../entities/input/boolean

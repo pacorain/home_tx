@@ -1,0 +1,8 @@
+# Type whatever you want!
+#
+# I don't have any of these, but it still needs to be
+# defined if I want to make some in the UI later.
+#
+# https://www.home-assistant.io/integrations/input_text
+
+input_text: ~

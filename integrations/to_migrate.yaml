@@ -1,19 +1,12 @@
 # There's a lot here that I need to get rid of/move somewhere else 
 # from my old configuration.yaml. This file will ecentually be deleted.
 
-default_config:
 ffmpeg:
 
 logger:
   default: info
 
-frontend:
-  themes: !include_dir_merge_named themes
-
 group: ~
-automation: !include_dir_merge_list ../automations/
-script: !include ../scripts.yaml
-scene: !include ../scenes.yaml
 
 tts:
   - platform: google_translate
@@ -39,8 +32,3 @@ binary_sensor:
     initial_state: false
     duration: 2
     peak: -32
-
-input_boolean:
-  babymonitor:
-    name: Baby Monitor
-    initial: off
