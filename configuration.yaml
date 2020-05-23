@@ -1,4 +1,5 @@
 default_config:
+ffmpeg:
 
 logger:
   default: info
