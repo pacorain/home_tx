@@ -1,0 +1,15 @@
+# Discord Webhooks - posts to a specific channel in a Discord server.
+#
+# This just uses the REST platform to utilize Discord's webhook API.
+# I think eventually I'd like to make a custom component that allows me
+# to add embeds, have custom icons for the profile picture, change the
+# username, etc. But for now, this is the simplest solution.
+#
+# https://www.home-assistant.io/integrations/notify.rest/
+# https://discord.com/developers/docs/resources/webhook#execute-webhook
+
+- name: RG Discord Server
+  platform: rest
+  method: POST
+  message_param_name: content
+  resource: !secret rg_server_webhook

@@ -1,0 +1,9 @@
+# Home Assistant state recorder. The thing that actually keeps track of things.
+#
+# I'm using MariaDB (MySQL) to log everything to help increase start times and 
+# also support some data science in the future.
+#
+# https://www.home-assistant.io/integrations/recorder/
+
+recorder:
+  db_url: !secret mysql_connection_string

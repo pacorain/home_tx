@@ -1,0 +1,6 @@
+# Installs FFMPEG so we can do stuff with sound and video.
+#
+# https://www.home-assistant.io/integrations/ffmpeg/
+# https://www.ffmpeg.org
+
+ffmpeg: ~

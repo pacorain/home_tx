@@ -1,0 +1,8 @@
+# Text-to-Speech
+# 
+# I just have this set to the default because I don't do much with it.
+#
+# https://www.home-assistant.io/integrations/tts
+
+tts:
+  - platform: google_translate

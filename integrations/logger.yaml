@@ -1,0 +1,6 @@
+# Home Assistant system logger. Helps to debug when issues occur.
+#
+# https://www.home-assistant.io/integrations/logger/
+
+logger:
+  default: info

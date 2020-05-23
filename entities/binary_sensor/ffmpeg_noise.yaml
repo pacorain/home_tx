@@ -1,0 +1,7 @@
+
+- platform: ffmpeg_noise
+  name: Nursery Cry Watch
+  input: rtsp://10.0.1.38/img/audio.sav
+  initial_state: false
+  duration: 2
+  peak: -32

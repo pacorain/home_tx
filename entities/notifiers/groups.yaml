@@ -1,0 +1,13 @@
+# Notification Groups
+# 
+# Notification groups are convenient because they deliver notifications to
+# multiple locations at once. Groups can also be changed without having to
+# adjust every automation, etc. that uses them.
+#
+# https://www.home-assistant.io/integrations/notify.group/
+
+- platform: group
+  name: everyone_ios
+  services:
+    - service: mobile_app_austins_iphone
+    - service: mobile_app_rachaels_iphone

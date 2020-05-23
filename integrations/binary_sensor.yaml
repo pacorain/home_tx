@@ -1,0 +1,7 @@
+# Binary Sensors - things that are On/Off, Open/Closed, etc.
+#
+# See entities/binary_sensor
+#
+# https://www.home-assistant.io/integrations/binary_sensor/
+
+binary_sensor: !include_dir_merge_list ../entities/binary_sensor

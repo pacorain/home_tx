@@ -1,0 +1,6 @@
+# Home Assistant can send notifications via multiple channels. I have
+# all of the notification customizations stored in entities/notifiers.
+#
+# https://www.home-assistant.io/integrations/notify/
+
+notify: !include_dir_merge_list ../entities/notifiers
