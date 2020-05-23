@@ -1,3 +1,8 @@
+# automations.yaml is required to allow automation editing in the UI. It includes
+# all of the automations created by users of the household in the UI.
+#
+# Most automations will be created via YAML and will be placed in automations/
+
 - id: '1589767890705'
   alias: AC Leak Notification
   description: Notify Austin and Rachael when a leak is detected

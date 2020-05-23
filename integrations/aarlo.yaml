@@ -1,3 +1,11 @@
+# My Netgear Arlo cameras.
+#
+# I get around the two-step verification requirement by creating a
+# separate account specifically for Home Assistant.
+# 
+# Integration:
+# https://github.com/twrecked/hass-aarlo
+
 aarlo:
   username: !secret arlo_username
   password: !secret arlo_password

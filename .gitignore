@@ -11,6 +11,8 @@
 !integrations/
 !integrations/*
 !custom_components/
+!entities/
+!entities/*
 
 # Ignore folders.
 .storage

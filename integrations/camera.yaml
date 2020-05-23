@@ -1,0 +1,3 @@
+# Grabs all the cameras from entities/camera
+
+camera: !include_dir_merge_list ../entities/camera

@@ -1,2 +1,11 @@
+# The configuration now utilizes the ability to split config into "packages".
+# This makes it so that the config as a whole can be split into multiple files
+# within integrations/.
+#
+# I was inspired to do this by @frenck:
+# https://github.com/frenck/home-assistant-config
+#
+# https://www.home-assistant.io/docs/configuration/packages/
+
 homeassistant:
   packages: !include_dir_named integrations

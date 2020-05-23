@@ -1,3 +1,9 @@
+# Konnected allows me to utilize the sensors from the old
+# security system that was installed in this house.
+#
+# https://konnected.io
+# https://www.home-assistant.io/integrations/konnected/
+
 konnected:
   access_token: !secret konnected_access_token
   api_host: !secret konnected_api_host
