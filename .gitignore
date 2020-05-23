@@ -10,6 +10,7 @@
 !automations/*
 !integrations/
 !integrations/*
+!custom_components/
 
 # Ignore folders.
 .storage
