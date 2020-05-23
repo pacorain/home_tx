@@ -53,3 +53,14 @@
       message: Austin has left therapy
       title: Location Update
     service: notify.mobile_app_rachaels_iphone
+- id: '1590190798505'
+  alias: Test Motion Detection
+  description: ''
+  trigger:
+  - platform: webhook
+    webhook_id: nursery_cam_motion_detection
+  condition: []
+  action:
+  - data:
+      message: Motion detected in the nursery
+    service: notify.mobile_app_austins_iphone
