@@ -1,0 +1,23 @@
+# Armed Night - defines what to monitor and what to do if something gets triggered
+# at night.
+
+- id: trigger_night_alarm
+  alias: Trigger alarm if intrusion is detected at night
+  trigger:
+    - platform: state
+      entity_id: group.armed_night_sensors
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_night
+  action:
+    - service: notify.mobile_app_austins_iphone # Just notify me for now while this is in progress
+      data_template:
+        message: Security Alarm
+        title: Something has been triggered # TODO: Can I use templates to figure out WHAT'S been triggered?
+        data:
+          push:
+            sound:
+              critical: 1
+              name: default

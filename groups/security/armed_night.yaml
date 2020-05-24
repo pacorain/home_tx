@@ -1,0 +1,7 @@
+armed_night_sensors:
+  name: Armed Night Sensors
+  view: no
+  entities:
+    - group.downstairs_doors
+    - group.bedtime_motion
+    - group.all_windows
