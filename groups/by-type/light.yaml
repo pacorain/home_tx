@@ -1,0 +1,15 @@
+all_lights: # If a security alarm is triggered, turn on all the lights
+  name: All lights 
+  entities:
+    - light.austin_bedside
+    - light.couch_lamp
+    - light.driveway_light
+    - light.rachael_bedside
+    - light.rachael_bedside
+
+smoke_detectors: 
+  name: Smoke Detectors
+  entities:
+    - light.downstairs_smoke_detector
+    - light.hallway_smoke_alarm
+    - light.loft_smoke_detector
