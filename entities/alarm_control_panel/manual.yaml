@@ -1,0 +1,9 @@
+# Manual Alarm control--Home Assistant has everything needed to trigger an alarm
+#
+# https://www.home-assistant.io/integrations/manual/
+
+- platform: manual
+  name: Home Alarm
+  delay_time: 60 # TODO: Find an optimal value here
+  arming_time: 60 # TODO: Find an optimal value here
+  trigger_time: 60 # TODO: Find an optimal value here
