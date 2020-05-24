@@ -1,6 +1,0 @@
-# Shell command - runs commands in the shell
-#
-# https://www.home-assistant.io/integrations/shell_command/
-
-shell_command:
-  git_pull: git pull
