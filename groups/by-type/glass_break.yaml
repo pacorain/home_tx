@@ -4,4 +4,4 @@ glass_break:
   name: Glass break sensors
   entities:
     - binary_sensor.kitchen_glass_break
-    - binary_sensor.living_room_glass_break_sensor
+    - binary_sensor.living_room_glass_break
