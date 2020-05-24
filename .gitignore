@@ -19,6 +19,8 @@
 !scenes/**
 !scripts/
 !scripts/**
+!groups/
+!groups/**
 
 # Ignore folders.
 .storage
