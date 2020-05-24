@@ -1,0 +1,34 @@
+# What to do when the alarm has been triggered
+
+- id: triggered_alarm
+  alias: Notify me when an alarm is triggered
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'triggered'
+  action:
+    - service: notify.mobile_app_austins_iphone # Just notify me for now while this is in progress
+      data_template:
+        message: Security Alarm
+        title: Something has been triggered # TODO: Can I use templates to figure out WHAT'S been triggered?
+        data:
+          push:
+            sound:
+              critical: 1
+              name: default
+    - service: aarlo.camera_start_recording
+      entity_id: camera.aarlo_downstairs_cam
+    - service: aarlo.camera_start_recording
+      entity_id: camera.aarlo_loft
+
+- id: stop_triggered_alarm
+  alias: Stop an alarm when it is no longer triggered
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      from: 'triggered'
+  action:
+    - service: aarlo.camera_stop_recording
+      entity_id: camera.aarlo_downstairs_cam
+    - service: aarlo.camera_stop_recording
+      entity_id: camera.aarlo_loft
