@@ -1,0 +1,27 @@
+# Glass Break sensors
+# 
+# I have a couple of Z-Wave glass break sensors for which the documentation is sparse. What I've
+# discovered, however, is that the 'value' entity of them goes to 255 when it detects a glass
+# break. This creates a binary sensor so I can group the together well.
+#
+# https://www.home-assistant.io/integrations/binary_sensor.template/
+
+- platform: template
+  sensors:
+    kitchen_glass_break:
+      friendly_name: Kitchen Glass Break sensor
+      value_template: >-
+        {{ states('sensor.kitchen_glass_break_value') | int > 0 }}
+      availability_template: >-
+        {{ states('sensor.kitchen_glass_break_value') == 'unavailable' }}
+      device_class: safety
+      delay_off: 30
+
+    living_room_glass_break:
+      friendly_name: Living Room Glass Break sensor
+      value_template: >-
+        {{ states('sensor.living_room_glass_break_value') | int > 0 }}
+      availability_template: >-
+        {{ states('sensor.living_room_glass_break_value') == 'unavailable' }}
+      device_class: safety
+      delay_off: 30

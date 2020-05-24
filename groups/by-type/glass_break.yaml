@@ -1,0 +1,7 @@
+# Any glass breaking while we're gone is bad. Let's group them all together.
+
+glass_break:
+  name: Glass break sensors
+  entities:
+    - binary_sensor.kitchen_glass_break
+    - binary_sensor.living_room_glass_break_sensor
