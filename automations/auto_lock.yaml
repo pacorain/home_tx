@@ -1,0 +1,76 @@
+# Front Door Auto-Lock
+#
+# Locks the front door automatically when it has been closed. Can be turned on and off with the
+# input boolean auto_lock.
+
+- id: front_door_auto_lock_start
+  alias: Front Door auto-lock timer
+  description: Start a timer to lock the front door if auto-lock is on  
+  # I'm defining all three triggers as conditions because this means any of these things can
+  # trigger the automation, but only if ALL of these things are true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_garage_door 
+      to: closed
+    - platform: state
+      entity_id: lock.front_door
+      to: unlocked
+    - platform: state
+      entity_id: input_boolean.auto_lock
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: binary_sensor.front_garage_door
+      state: closed
+    - condition: state
+      entity_id: lock.front_door
+      state: unlocked
+    - condition: state 
+      entity_id: input_boolean.auto_lock
+      state: 'on'
+  action:
+    - service: timer.start
+      entity_id: timer.auto_lock
+
+
+- id: front_door_auto_lock_cancel
+  alias: Front door auto-lock cancel
+  description: Cancel the auto-lock timer if something changes
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_garage_door
+      to: open
+    - platform: state
+      entity_id: lock.front_door
+      to: locked
+    - platform: state
+      entity_id: input_boolean.auto_lock
+      to: 'off'
+  action:
+    - service: timer.cancel
+      entity_id: timer.auto_lock
+
+
+- id: front_door_auto_lock_complete
+  alias: Front door auto-lock
+  description: Lock the front door when the timer is complete
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.auto_lock
+  # This condition should always be true since we're cancelling the timer, but it doesn't really
+  # hurt to double-check.
+  condition:
+    - condition: state
+      entity_id: binary_sensor.front_garage_door
+      state: closed
+    - condition: state
+      entity_id: lock.front_door
+      state: unlocked
+    - condition: state 
+      entity_id: input_boolean.auto_lock
+      state: 'on'
+  action:
+    - service: lock.lock
+      entity_id: lock.front_door

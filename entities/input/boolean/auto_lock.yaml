@@ -1,0 +1,8 @@
+# Auto Lock
+#
+# If on, the front door will lock when the door is closed
+
+auto_lock:
+  name: Front Door Auto-Lock
+  initial: true
+  icon: mdi:lock-clock
