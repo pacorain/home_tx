@@ -1,0 +1,8 @@
+# Home Assistant Cloud
+#
+# Some of my family uses Google Assistant, and this is the best way to invite people to control
+# my home without making them download another app (except *maybe* Google Home)
+#
+# https://www.home-assistant.io/integrations/cloud/
+
+cloud:
