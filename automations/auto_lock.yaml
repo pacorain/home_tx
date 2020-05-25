@@ -11,7 +11,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.front_garage_door 
-      to: closed
+      to: 'off'
     - platform: state
       entity_id: lock.front_door
       to: unlocked
@@ -21,7 +21,7 @@
   condition:
     - condition: state
       entity_id: binary_sensor.front_garage_door
-      state: closed
+      state: 'off'
     - condition: state
       entity_id: lock.front_door
       state: unlocked
@@ -39,7 +39,7 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.front_garage_door
-      to: open
+      to: 'on'
     - platform: state
       entity_id: lock.front_door
       to: locked
@@ -64,7 +64,7 @@
   condition:
     - condition: state
       entity_id: binary_sensor.front_garage_door
-      state: closed
+      state: 'off'
     - condition: state
       entity_id: lock.front_door
       state: unlocked
