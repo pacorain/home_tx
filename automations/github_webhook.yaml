@@ -1,0 +1,20 @@
+# GitHub Webhook
+#
+# Runs the Git Pull addon whenever we get a webhook from GitHub. Unfortunately, when Home Assistant
+# processes webhooks in automations, only the request body and query string is available.
+# https://github.com/home-assistant/core/blob/d3f67c3841a586eefe8b69beb85e4a3f6f1755bf/homeassistant/components/automation/webhook.py#L27-L34
+# This means that I have to put the webhook ID into a secret as opposed to exposing the webhook ID
+# and using GitHub's functionality to include a secret. (I'm also not sure if I would be able to 
+# validate the secret since it is encrypted based on the body.)
+
+- id: github_webhook
+  alias: Git Pull
+  description: Run git pull whenever a commit is pushed to GitHub
+  trigger:
+    - platform: webhook
+      webhook_id: !secret github_webhook_id
+  action:
+    - service: hassio.addon_start
+      data:
+        addon: core_git_pull
+  
