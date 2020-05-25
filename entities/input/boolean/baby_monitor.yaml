@@ -1,0 +1,7 @@
+# Baby Monitor switch
+#
+# Turns on and off the ffmpeg_noise integration for the nursery
+
+babymonitor:
+  name: Baby Monitor
+  initial: off
