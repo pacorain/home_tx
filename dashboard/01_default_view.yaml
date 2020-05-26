@@ -1,0 +1,329 @@
+# The default view
+#
+# I litereally just copied and pasted this from the generated config so that I would still have a
+# functioning dashboard while I work on the new dashboards
+path: default_view
+title: Default config
+badges:
+  - entity: binary_sensor.nursery_cry_watch
+  - entity: binary_sensor.remote_ui
+  - entity: binary_sensor.updater
+  - entity: binary_sensor.front_garage_door
+  - entity: binary_sensor.austins_phone_presence
+  - entity: person.austin_rainwater
+  - entity: person.rachael_rainwater
+  - entity: sensor.entryway_thermostat
+  - entity: sensor.rachaels_iphone_activity
+  - entity: sensor.rachaels_iphone_battery_level
+  - entity: sensor.rachaels_iphone_battery_state
+  - entity: sensor.rachaels_iphone_bssid
+  - entity: sensor.rachaels_iphone_connection_type
+  - entity: sensor.rachaels_iphone_sim_1
+  - entity: sensor.rachaels_iphone_ssid
+  - entity: sensor.rachaels_iphone_geocoded_location
+  - entity: sensor.rachaels_iphone_last_update_trigger
+  - entity: sensor.rachaels_iphone_average_active_pace
+  - entity: sensor.rachaels_iphone_distance
+  - entity: sensor.rachaels_iphone_floors_ascended
+  - entity: sensor.rachaels_iphone_floors_descended
+  - entity: sensor.rachaels_iphone_steps
+  - entity: sensor.austins_iphone_activity
+  - entity: sensor.austins_iphone_battery_level
+  - entity: sensor.austins_iphone_battery_state_2
+  - entity: sensor.austins_iphone_bssid
+  - entity: sensor.austins_iphone_connection_type
+  - entity: sensor.austins_iphone_sim_1
+  - entity: sensor.austins_iphone_ssid
+  - entity: sensor.austins_iphone_geocoded_location
+  - entity: sensor.austins_iphone_last_update_trigger
+  - entity: sensor.austins_iphone_average_active_pace
+  - entity: sensor.austins_iphone_distance
+  - entity: sensor.austins_iphone_floors_ascended
+  - entity: sensor.austins_iphone_floors_descended
+  - entity: sensor.austins_iphone_steps
+  - entity: sensor.hallway_smoke_alarm_carbon_monoxide_detector
+  - entity: sensor.hallway_smoke_alarm_power_source
+  - entity: sensor.hallway_smoke_alarm_relative_humidity_measurement
+  - entity: sensor.hallway_smoke_alarm_smoke_detector
+  - entity: sensor.hallway_smoke_alarm_temperature_measurement
+  - entity: sensor.back_door_battery
+  - entity: sensor.back_door_temperature_measurement
+  - entity: sensor.loft_smoke_detector_carbon_monoxide_detector
+  - entity: sensor.loft_smoke_detector_power_source
+  - entity: sensor.loft_smoke_detector_relative_humidity_measurement
+  - entity: sensor.loft_smoke_detector_smoke_detector
+  - entity: sensor.loft_smoke_detector_temperature_measurement
+  - entity: sensor.downstairs_smoke_detector_carbon_monoxide_detector
+  - entity: sensor.downstairs_smoke_detector_power_source
+  - entity: sensor.downstairs_smoke_detector_relative_humidity_measurement
+  - entity: sensor.downstairs_smoke_detector_smoke_detector
+  - entity: sensor.downstairs_smoke_detector_temperature_measurement
+  - entity: sensor.garage_door_battery
+  - entity: sensor.hacs
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_indicator
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_general
+  - entity: sensor.kitchen_glass_break_value
+  - entity: sensor.kitchen_glass_break_battery
+  - entity: sensor.kitchen_glass_break_indicator
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_alarm_type
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_alarm_level
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_battery_level
+  - entity: sensor.everspring_st812_flood_detector_flood
+  - entity: sensor.everspring_st812_flood_detector_alarm_type
+  - entity: sensor.everspring_st812_flood_detector_alarm_level
+  - entity: sensor.everspring_st812_flood_detector_battery_level
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_indicator_2
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_general_2
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_alarm_type_2
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_alarm_level_2
+  - entity: >-
+      sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_battery_level_2
+  - entity: sun.sun
+  - entity: timer.auto_lock
+  - entity: timer.pizza_delivery_light
+cards:
+  - type: entities
+    entities:
+      - entity: binary_sensor.bedroom_door
+        name: Door
+      - entity: sensor.bedroom_door_temperature
+        name: Door Temperature
+      - entity: binary_sensor.bedroom_motion
+        name: Motion
+      - entity: sensor.bedroom_motion_temperature
+        name: Motion Temperature
+      - entity: sensor.bedroom_motion_illuminance
+        name: Motion Illuminance
+      - entity: remote.bedroom_tv
+        name: TV
+    title: Bedroom
+  - type: media-control
+    entity: media_player.bedroom_tv
+  - type: entities
+    entities:
+      - binary_sensor.back_door
+      - sensor.back_door_temperature
+    title: Kitchen
+  - type: entities
+    entities:
+      - entity: binary_sensor.living_room_motion
+        name: Motion
+      - entity: sensor.living_room_illuminance
+        name: Illuminance
+      - entity: sensor.living_room_temperature
+        name: Temperature
+      - lock.front_door
+      - zwave.front_door_deadbolt
+      - sensor.front_door_deadbolt_burglar
+      - sensor.front_door_lock_system
+      - sensor.front_door_lock_access_control
+      - sensor.front_door_lock_alarm_level
+      - sensor.front_door_lock_alarm_type
+      - sensor.front_door_lock_power_management
+      - sensor.front_door_lock_sourcenodeid
+    title: Living Room
+  - type: entities
+    entities:
+      - entity: light.loft_lamp
+        name: Lamp
+    title: Loft
+  - type: entities
+    entities:
+      - entity: binary_sensor.nursery_door
+        name: Door
+      - entity: sensor.nursery_temperature
+        name: Temperature
+      - entity: binary_sensor.nursery_motion
+        name: Motion
+      - entity: sensor.nursery_motion_temperature
+        name: Motion Temperature
+      - entity: sensor.nursery_illuminance
+        name: Illuminance
+    title: Nursery
+  - type: entities
+    entities:
+      - sensor.canon_mx920_series_black_bk
+      - sensor.canon_mx920_series_black_pgbk
+      - sensor.canon_mx920_series_cyan
+      - sensor.canon_mx920_series_magenta
+      - sensor.canon_mx920_series_yellow
+      - sensor.canon_mx920_series
+      - entity: binary_sensor.office_door
+        name: Door
+      - entity: sensor.office_door_temperature
+        name: Door temperature
+      - entity: binary_sensor.office_motion
+        name: Motion
+      - entity: sensor.office_temperature
+        name: Motion temperature
+    title: Office
+  - type: entities
+    entities:
+      - binary_sensor.front_door_ding
+      - binary_sensor.front_door_motion
+      - binary_sensor.driveway_motion
+      - light.driveway_light
+      - sensor.front_door_last_activity
+      - sensor.front_door_last_ding
+      - sensor.front_door_last_motion
+      - sensor.front_door_volume
+      - sensor.driveway_last_activity
+      - sensor.driveway_last_motion
+      - sensor.driveway_volume
+      - switch.driveway_siren
+    title: Outdoor
+  - type: picture-entity
+    entity: camera.front_door
+  - type: picture-entity
+    entity: camera.driveway
+  - type: entities
+    entities:
+      - group.downstairs_doors
+      - group.bedtime_motion
+      - group.all_windows
+    title: Armed Night Sensors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.bedroom_door
+      - binary_sensor.nursery_door
+      - binary_sensor.office_door
+    title: Upstairs doors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.back_door_contact
+      - binary_sensor.garage_door_contact
+      - binary_sensor.back_door_contact
+    title: Downstairs doors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.back_door_contact
+      - binary_sensor.garage_door_contact
+      - binary_sensor.back_door_contact
+    title: Entry/Exit Doors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.bedroom_door
+      - binary_sensor.nursery_door
+      - binary_sensor.office_door
+      - binary_sensor.back_door_contact
+      - binary_sensor.garage_door_contact
+      - binary_sensor.back_door_contact
+    title: All doors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.kitchen_glass_break
+      - binary_sensor.living_room_glass_break
+    title: Glass break sensors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - light.austin_bedside
+      - light.couch_lamp
+      - light.driveway_light
+      - light.rachael_bedside
+      - light.rachael_bedside
+    title: All lights
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - light.downstairs_smoke_detector
+      - light.hallway_smoke_alarm
+      - light.loft_smoke_detector
+    title: Smoke Detectors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.nursery_motion
+      - binary_sensor.bedroom_motion
+      - binary_sensor.office_motion
+    title: Pet Free motion sensors
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.living_room_motion
+      - binary_sensor.nursery_motion
+      - binary_sensor.office_motion
+    title: Bedtime Motion
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.living_room_motion
+      - binary_sensor.bedroom_motion
+      - binary_sensor.nursery_motion
+      - binary_sensor.office_motion
+    title: Indoor motion detection
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.master_bedroom_windows
+      - binary_sensor.loft_windows
+      - binary_sensor.nursery_office_windows
+    title: Upstairs windows
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.kitchen_windows
+      - binary_sensor.living_room_windows
+    title: Downstairs windows
+    show_header_toggle: true
+  - type: entities
+    entities:
+      - binary_sensor.master_bedroom_windows
+      - binary_sensor.loft_windows
+      - binary_sensor.nursery_office_windows
+      - binary_sensor.kitchen_windows
+      - binary_sensor.living_room_windows
+    title: All windows
+    show_header_toggle: true
+  - type: alarm-panel
+    entity: alarm_control_panel.home_alarm
+  - type: picture-entity
+    entity: camera.aarlo_downstairs_cam
+  - type: picture-entity
+    entity: camera.aarlo_loft
+  - type: picture-entity
+    entity: camera.nursery_cam
+  - type: thermostat
+    entity: climate.entryway_thermostat
+  - type: entities
+    entities:
+      - input_boolean.babymonitor
+      - input_boolean.auto_lock
+    title: Input boolean
+  - type: entities
+    entities:
+      - light.tall_lamp
+    title: Light
+  - type: entities
+    entities:
+      - scene.good_night
+      - scene.morning_light
+      - scene.relax
+    title: Scene
+  - type: weather-forecast
+    entity: weather.home
+  - type: entities
+    entities:
+      - zwave.everspring_st812_flood_detector
+      - zwave.kitchen_glass_break
+      - zwave.linear_nortek_security_control_llc_unknown_type_4742_id_3030
+      - zwave.linear_nortek_security_control_llc_unknown_type_4742_id_3030_2
+      - zwave.unknown_node_2
+      - entity: zwave.z_wave_sigma_designs_uzb_z_wave_usb_adapter
+        name: (Sigma Designs) UZB Z-Wave USB Adapter
+    title: Z-Wave
+
