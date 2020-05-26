@@ -12,4 +12,4 @@ lovelace:
       mode: yaml
       title: Test Dashboard
       show_in_sidebar: true
-      filename: lovelace/test_dashboard.yaml
+      filename: ../lovelace/test_dashboard.yaml
