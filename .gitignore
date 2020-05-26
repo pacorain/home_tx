@@ -21,6 +21,8 @@
 !scripts/**
 !groups/
 !groups/**
+!lovelace/
+!lovelace/**
 
 # Ignore folders.
 .storage

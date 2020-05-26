@@ -1,0 +1,15 @@
+lovelace:
+  mode: storage
+  # Add more dashboards
+  dashboards:
+    lovelace-generated:
+      mode: yaml
+      filename: notexist.yaml
+      title: Generated
+      icon: mdi:tools
+      show_in_sidebar: true
+    lovelace-test:
+      mode: yaml
+      title: Test Dashboard
+      show_in_sidebar: true
+      filename: lovelace/test_dashboard.yaml
