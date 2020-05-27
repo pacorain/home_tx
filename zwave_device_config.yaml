@@ -1,6 +1,0 @@
-sensor.linear_nortek_security_control_llc_unknown_type_4742_id_3030_general_2:
-  ignored: false
-  polling_intensity: 30
-sensor.everspring_st812_flood_detector_flood:
-  ignored: true
-  polling_intensity: 0
