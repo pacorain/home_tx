@@ -2,7 +2,6 @@ title: Favorites
 badges:
  - 
 cards:
-    # The markdown card will render markdown text.
   - type: vertical-stack
     title: 💡 Lights
     cards:
@@ -24,3 +23,13 @@ cards:
           - entity: light.rachael_bedside
             secondary_info: brightness
             state_color: true 
+      - type: entities
+        title: Loft
+        entities:
+          - entity: light.loft_lamp
+            state_color: true
+      - type: entities
+        title: Outdoor
+        entities:
+          - entity: light.driveway_light
+            state_color: true
