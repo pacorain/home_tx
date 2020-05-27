@@ -1,0 +1,26 @@
+title: Favorites
+badges:
+ - 
+cards:
+    # The markdown card will render markdown text.
+  - type: vertical-stack
+    title: 💡 Lights
+    cards:
+      - type: entities
+        title: Living Room
+        entites:
+          - entity: light.tall_lamp
+            secondary_info: brightness
+            state_color: true
+          - entity: light.couch_lamp
+            secondary_info: brightness
+            state_color: true
+      - type: entities
+        title: Bedroom
+        entities:
+          - entity: light.austin_bedside
+            secondary_info: brightness
+            state_color: true
+          - entity: light.rachael_bedside
+            secondary_info: brightness
+            state_color: true 
