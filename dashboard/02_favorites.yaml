@@ -8,7 +8,7 @@ cards:
     cards:
       - type: entities
         title: Living Room
-        entites:
+        entities:
           - entity: light.tall_lamp
             secondary_info: brightness
             state_color: true
