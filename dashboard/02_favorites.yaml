@@ -33,3 +33,5 @@ cards:
         entities:
           - entity: light.driveway_light
             state_color: true
+  - type: thermostat
+    entity: climate.entryway_thermostats
