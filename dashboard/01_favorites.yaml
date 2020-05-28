@@ -16,7 +16,7 @@ cards:
             state_color: true
           - type: button
             name: Configure
-            action: more-info
+            tap_action: more-info
             entity: group.living_room_lights
       - type: entities
         title: Bedroom
