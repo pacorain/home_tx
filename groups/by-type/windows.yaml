@@ -13,7 +13,7 @@ downstairs_windows:
     - binary_sensor.kitchen_windows
     - binary_sensor.living_room_windows
 
-windows:
+all_windows:
   name: All windows
   entities:
     - binary_sensor.master_bedroom_windows
