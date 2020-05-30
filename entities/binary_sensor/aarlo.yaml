@@ -1,0 +1,7 @@
+# Aarlo sensors
+#
+# Just some information on the cameras
+
+- platform: aarlo
+  monitored_conditions:
+    - motion

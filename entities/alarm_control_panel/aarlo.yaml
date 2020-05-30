@@ -1,0 +1,9 @@
+# Arlo alarm control
+#
+# This allows me to control whether or not my Arlo cameras record
+
+- platform: aarlo
+  away_mode_name: Armed
+  night_mode_name: Armed
+  home_mode_name: Armed Home
+  trigger_time: 30

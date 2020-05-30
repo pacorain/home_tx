@@ -1,0 +1,8 @@
+# Aarlo sensors
+#
+# Just some information on the cameras
+
+- platform: aarlo
+  monitored_conditions:
+    - battery_level
+    - signal_strength
