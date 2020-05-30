@@ -1,0 +1,13 @@
+# Start Notification
+#
+# Let Austin know when Home Assistant has started
+
+- id: start_notification
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: notify.mobile_app_austins_iphone
+      data:
+        title: Home Assistant
+        message: Home Assistant has started
