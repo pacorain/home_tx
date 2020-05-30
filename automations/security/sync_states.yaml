@@ -11,7 +11,7 @@
       to: disarmed
   action:
     - service: alarm_control_panel.alarm_disarm
-      entity_id: alarm_control_panel.arlo_mode
+      entity_id: alarm_control_panel.aarlo_mode
 
 - id: sync_alarm_states_home
   alias: Alarm Syncing - Home
@@ -21,7 +21,7 @@
       to: armed_home
   action:
     - service: alarm_control_panel.alarm_arm_home
-      entity_id: alarm_control_panel.arlo_mode
+      entity_id: alarm_control_panel.aarlo_mode
 
 - id: sync_alarm_states_away
   alias: Alarm Syncing - Away
@@ -31,7 +31,7 @@
       to: armed_away
   action:
     - service: alarm_control_panel.alarm_arm_away
-      entity_id: alarm_control_panel.arlo_mode
+      entity_id: alarm_control_panel.aarlo_mode
 
 - id: sync_alarm_states_night
   alias: Alarm Syncing - Night
@@ -41,4 +41,4 @@
       to: armed_night
   action:
     - service: alarm_control_panel.alarm_arm_night
-      entity_id: alarm_control_panel.arlo_mode
+      entity_id: alarm_control_panel.aarlo_mode
