@@ -13,4 +13,9 @@
   action:
     - service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.home_alarm
-   
+    - service: notify.everyone_ios
+      data_template:
+        title: Security Alarm
+        message: The alarm has been tripped by {{ state_attr(trigger.event.data.entity_id, 'friendly_name') }}. Is it you?
+        push:
+          thread-id: alarm_triggered
