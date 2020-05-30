@@ -42,3 +42,12 @@ cards:
     cards: 
       - type: thermostat
         entity: climate.entryway_thermostat
+  - type: vertical-stack
+    title: 🔔 Security
+    cards:
+      - type: alarm-panel
+        entity: alarm_control_panel.home_alarm
+        states:
+          - arm_home
+          - arm_away
+          - arm_night
