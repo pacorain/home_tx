@@ -1,0 +1,14 @@
+# Devices to monitor for the 'open' state
+
+- binary_sensor.back_door
+- binary_sensor.bedroom_door
+- binary_sensor.front_garage_door
+- binary_sensor.bedroom_door
+- binary_sensor.nursery_door
+- binary_sensor.office_door
+- binary_sensor.garage_door
+- binary_sensor.kitchen_windows
+- binary_sensor.living_room_windows
+- binary_sensor.loft_windows
+- binary_sensor.master_bedroom_windows
+- binary_sensor.nursery_office_windows
