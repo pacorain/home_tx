@@ -1,0 +1,17 @@
+# Security Events
+
+
+- id: security_device_triggered_away
+  alias: Raise Security Away Events
+  trigger:
+    - platform: state
+      entity_id: !include ../../security/away/open.yaml
+      to: 'open'
+    - platform: state
+      entity_id: !include ../../security/away/detected.yaml
+      to: 'Detected'
+  action: 
+    - event: security_device_triggered
+      event_data_template:
+        entity_id: "{{ trigger.entity_id }}"
+        away: true

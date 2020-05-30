@@ -1,0 +1,16 @@
+
+
+- id: trigger_away_alarm
+  trigger:
+    - platform: event
+      event_type: security_device_triggered
+      event_data:
+        away: true
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_away
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+   

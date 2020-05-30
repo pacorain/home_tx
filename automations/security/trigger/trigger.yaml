@@ -20,6 +20,8 @@
       entity_id: camera.aarlo_downstairs_cam
     - service: aarlo.camera_start_recording
       entity_id: camera.aarlo_loft
+    - service: light.turn_on
+      entity_id: group.all_lights
 
 - id: stop_triggered_alarm
   alias: Stop an alarm when it is no longer triggered
