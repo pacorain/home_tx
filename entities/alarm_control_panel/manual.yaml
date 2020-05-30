@@ -7,3 +7,5 @@
   delay_time: 60 # TODO: Find an optimal value here
   arming_time: 60 # TODO: Find an optimal value here
   trigger_time: 60 # TODO: Find an optimal value here
+  armed_home:
+    arming_time: 0
