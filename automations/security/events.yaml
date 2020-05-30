@@ -6,10 +6,10 @@
   trigger:
     - platform: state
       entity_id: !include ../../security/away/open.yaml
-      to: 'open'
+      to: 'on'
     - platform: state
       entity_id: !include ../../security/away/detected.yaml
-      to: 'Detected'
+      to: 'on'
   action: 
     - event: security_device_triggered
       event_data_template:
