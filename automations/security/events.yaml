@@ -5,10 +5,7 @@
   alias: Raise Security Away Events
   trigger:
     - platform: state
-      entity_id: !include ../../security/away/open.yaml
-      to: 'on'
-    - platform: state
-      entity_id: !include ../../security/away/detected.yaml
+      entity_id: !include ../../security/away.yaml
       to: 'on'
   action: 
     - event: security_device_triggered
