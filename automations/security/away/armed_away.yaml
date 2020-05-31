@@ -23,5 +23,6 @@
           The alarm has been tripped by {{ 
           state_attr(trigger.to_state.attributes.last_triggered_device, 'friendly_name') 
           }}. Is it you?
-        push:
-          thread-id: alarm_triggered
+        data:
+          push:
+            thread-id: alarm_triggered
