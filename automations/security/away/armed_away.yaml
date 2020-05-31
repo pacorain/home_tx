@@ -21,7 +21,7 @@
         title: Security Alarm
         message: >
           The alarm has been tripped by {{ 
-          state_attr(trigger.to_state.attributes.last_triggered_device, 'friendly_name') 
+          state_attr(trigger.to_state.attributes.most_recently_tripped_device, 'friendly_name') 
           }}. Is it you?
         data:
           push:
