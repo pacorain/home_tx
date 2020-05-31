@@ -2,20 +2,26 @@
 
 - id: trigger_away_alarm
   trigger:
-    - platform: event
-      event_type: security_device_triggered
-      event_data:
-        away: true
+    - platform: state
+      entity_id: sensor.security_away_tripped_devices
   condition:
     - condition: state
       entity_id: alarm_control_panel.home_alarm
       state: armed_away
+    - condition: template
+      # Only trip the alarm if the number of tripped sensors *increases*. For example, if a motion
+      # sensor goes from Detected to Clear, it should not trip the alarm.
+      value_template: >
+        {{ trigger.to_state.state | int > trigger.from_state.state | int }}
   action:
     - service: alarm_control_panel.alarm_trigger
       entity_id: alarm_control_panel.home_alarm
     - service: notify.everyone_ios
       data_template:
         title: Security Alarm
-        message: The alarm has been tripped by {{ state_attr(trigger.event.data.entity_id, 'friendly_name') }}. Is it you?
+        message: >
+          The alarm has been tripped by {{ 
+          state_attr(trigger.to_state.attributes.last_triggered_device, 'friendly_name') 
+          }}. Is it you?
         push:
           thread-id: alarm_triggered

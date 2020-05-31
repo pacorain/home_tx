@@ -23,8 +23,6 @@
 !groups/**
 !dashboard/
 !dashboard/**
-!security/
-!security/**
 
 # Ignore folders.
 .storage

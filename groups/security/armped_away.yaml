@@ -1,0 +1,4 @@
+armed_away_sensors:
+  entities:
+    - group.downstairs_doors
+    # TODO: Add more
