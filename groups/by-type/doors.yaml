@@ -12,7 +12,7 @@ downstairs_doors:
   entities:
     - binary_sensor.back_door_contact
     - binary_sensor.garage_door_contact
-    - binary_sensor.back_door_contact
+    - binary_sensor.front_garage_door
 
 # For now, the doors to access our house happen to be all of the tracked
 # downstairs doors.
