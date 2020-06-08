@@ -7,7 +7,7 @@
   trigger:
     - platform: state
       entity_id: group.glass_break
-      to: on
+      to: 'on'
   action:
     - service: notify.everyone_ios
       data_template:
