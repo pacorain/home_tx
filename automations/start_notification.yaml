@@ -8,9 +8,9 @@
       event: start
   action:
     - service: notify.mobile_app_austins_iphone
-      data_template:
+      data:
         title: Home Assistant
-        message: Home Assistant has started at 
+        message: Home Assistant has started
         apns_headers:
           apns-collapse-id: home-assistant-status
 
