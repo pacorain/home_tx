@@ -1,8 +1,14 @@
 # Glass Break sensors
+#
+# Utilitech Glass Break Sensor (from Iris)
+# Linear GB00Z-1
 # 
 # I have a couple of Z-Wave glass break sensors for which the documentation is sparse. What I've
 # discovered, however, is that the 'value' entity of them goes to 255 when it detects a glass
-# break. This creates a binary sensor so I can group the together well.
+# break. This creates a binary sensor so I can group them together well.
+#
+# These sensors do require some configuration because they don't very well identify themselves
+# to the Z-Wave hub.
 #
 # https://www.home-assistant.io/integrations/binary_sensor.template/
 
