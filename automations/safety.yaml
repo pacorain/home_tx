@@ -1,0 +1,21 @@
+# Safety sensors
+#
+# Notify everyone when a safety sensor is tripped.
+
+- id: glass_break_notification
+  alias: Notify everyone when a glass break is detected
+  trigger:
+    - platform: state
+      entity_id: group.glass_break
+      to: on
+  action:
+    - service: notify.everyone_ios
+      data_template:
+        title: Home Safety
+        message: >-
+          {{ state_attr(trigger.entity_id, 'friendly_name') }} has detected broken glass
+        data:
+          push:
+            thread-id: home-safety
+
+    
