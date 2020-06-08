@@ -12,7 +12,7 @@
         title: Home Assistant
         message: Home Assistant has started
         apns_headers:
-          apns-collapse-id: home-assistant-status
+          'apns-collapse-id': 'home-assistant-status'
 
 - id: stop_notification
   trigger:
@@ -24,4 +24,4 @@
         title: Home Assistant
         message: Home Assistant is shutting down
         apns_headers:
-          apns-collapse-id: home-assistant-status
+          'apns-collapse-id': 'home-assistant-status'
