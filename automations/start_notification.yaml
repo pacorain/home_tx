@@ -8,6 +8,20 @@
       event: start
   action:
     - service: notify.mobile_app_austins_iphone
-      data:
+      data_template:
         title: Home Assistant
-        message: Home Assistant has started
+        message: Home Assistant has started at 
+        apns_headers:
+          apns-collapse-id: home-assistant-status
+
+- id: stop_notification
+  trigger:
+    - platform: homeassistant
+      event: shutdown
+  action:
+    - service: notify.mobile_app_austins_iphone
+      data: 
+        title: Home Assistant
+        message: Home Assistant is shutting down
+        apns_headers:
+          apns-collapse-id: home-assistant-status
