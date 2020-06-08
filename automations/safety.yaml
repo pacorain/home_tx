@@ -6,7 +6,9 @@
   alias: Notify everyone when a glass break is detected
   trigger:
     - platform: state
-      entity_id: group.glass_break
+      entity_id: 
+        - binary_sensor.kitchen_glass_break
+        - binary_sensor.living_room_glass_break
       to: 'on'
   action:
     - service: notify.everyone_ios
