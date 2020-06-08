@@ -12,8 +12,8 @@
       friendly_name: Kitchen Glass Break sensor
       value_template: >-
         {{ states('sensor.kitchen_glass_break_general') | int > 0 }}
-      availability_template: >-
-        {{ states('sensor.kitchen_glass_break_general') == 'unavailable' }}
+      # availability_template: >-
+        # {{ states('sensor.kitchen_glass_break_general') == 'unavailable' }}
       device_class: safety
       delay_off: 30
 
