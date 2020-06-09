@@ -26,7 +26,7 @@ Home Assitant to do what I want.
     - I use [groups](https://github.com/pacorain/home/tree/master/groups/security) to manage the
       devices that are monitored when the security system is armed.
     - I have special [template sensors](https://github.com/pacorain/home/blob/master/entities/sensor/security.yaml) 
-      that `[expand](https://www.home-assistant.io/docs/configuration/templating/#working-with-groups)`
+      that [`expand`](https://www.home-assistant.io/docs/configuration/templating/#working-with-groups)
       the security devices recursively and complie the statuses of all of them.
     - Finally, I use a series of [automations](https://github.com/pacorain/home/tree/master/automations/security)
       to manage what happens when security devices trip, when the alarm is fully triggered, etc.
