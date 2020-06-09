@@ -14,10 +14,8 @@ cards:
           - entity: light.couch_lamp
             secondary_info: brightness
             state_color: true
-          - type: button
-            name: Configure
-            tap_action: more-info
-            entity: group.living_room_lights
+          - entity: group.living_room_lights
+            state_color: true
       - type: entities
         title: Bedroom
         entities:
