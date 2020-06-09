@@ -1,8 +1,5 @@
 # Groups--allows monitoring the state of multiple devices easily.
 #
-# I don't currently have any groups and will need to set this up
-# later. Right now, this doesn't do anything.
-#
 # https://www.home-assistant.io/integrations/group/
 
 group: !include_dir_merge_named ../groups
