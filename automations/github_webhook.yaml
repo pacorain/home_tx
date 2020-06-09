@@ -13,6 +13,15 @@
   trigger:
     - platform: webhook
       webhook_id: !secret github_webhook_id
+    # We can also check for changes when the security system is not active
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: disarmed
+  condition: 
+    # Don't kill Home Assistant if we're working away from home
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: disarmed
   action:
     - service: hassio.addon_start
       data:
