@@ -497,6 +497,27 @@ const livolo = {
 };
 
 const devices = [
+    {
+        zigbeeModel: ['3405-L'],
+        model: 'GKL000014167',
+        vendor: 'Iris',
+        description: 'Iris Gen 2 security keypad',
+        fromZigbee: [
+            {
+                cluster: 'ssIasAce',
+                type: 'commandArm',
+                convert: (model, msg, publish, options, meta) => {
+                    const lookup = {
+                        0: 'disarm',
+                        1: 'arm_stay',
+                        3: 'arm_away'
+                    };
+                    return {action: lookup[msg.data['armmode']]}
+                },
+            }
+        ]
+    },
+
     // Xiaomi
     {
         zigbeeModel: ['lumi.light.aqcn02'],
