@@ -502,6 +502,11 @@ const devices = [
         model: 'GKL000014167',
         vendor: 'Iris',
         description: 'Iris Gen 2 security keypad',
+        configure: async (device, coordinatorEndpoint) => {
+            const endpoint = device.getEndpoint(1);
+            await bind(endpoint, coordinatorEndpoint, ['genBasic', 'genIdentify', 'genPowerCfg']);
+            await configureReporting.batteryVoltage(endpoint);
+        },
         fromZigbee: [
             {
                 cluster: 'ssIasAce',
