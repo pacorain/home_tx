@@ -23,6 +23,7 @@
 !groups/**
 !dashboard/
 !dashboard/**
+!zigbee2mqtt/
 
 # Ignore folders.
 .storage
