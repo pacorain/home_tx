@@ -504,7 +504,8 @@ const devices = [
         description: 'Iris Gen 2 security keypad',
         configure: async (device, coordinatorEndpoint) => {
             const endpoint = device.getEndpoint(1);
-            await bind(endpoint, coordinatorEndpoint, ['genBasic', 'genIdentify', 'genPowerCfg']);
+            await bind(endpoint, coordinatorEndpoint, ['ssIasZone', 'ssIasAce', 'genBasic', 'genPowerCfg', 'msTemperatureMeasurement']);
+            await configureReporting.temperature(endpoint)
             await configureReporting.batteryVoltage(endpoint);
         },
         fromZigbee: [
