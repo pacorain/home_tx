@@ -25,3 +25,4 @@
   state_opening: Opening
   state_closed: Closed
   state_closing: Closing
+  retain: true
