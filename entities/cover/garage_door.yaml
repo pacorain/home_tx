@@ -20,4 +20,4 @@
       "Value": 1
     }
   state_topic: "OpenZWave/1/node/21/instance/1/commandclass/102/value/281475334897684/"
-  value_tempate: "{{ value_json.Value.Selected }}"
+  value_template: "{{ value_json.Value.Selected }}"
