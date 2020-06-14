@@ -1,0 +1,5 @@
+bedside_lights:
+  name: Bedside Lights
+  entities:
+    - light.austin_bedside
+    - light.rachael_bedside
