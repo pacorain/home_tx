@@ -521,6 +521,24 @@ const devices = [
                     return {action: lookup[msg.data['armmode']]}
                 },
             }
+        ],
+        toZigbee: [
+            {
+                cluster: 'ssIasZone',
+                type: ['attributeReport', 'readResponse'],
+                convert: (model, msg, publish, options, meta) => {
+                    const iasCieAddr = msg.data.iasCieAddr;
+                    const zoneState = msg.data.zoneState;
+                    const results = {};
+                    if (zoneState) {
+                        results['enrolled'] = true;
+                    } else {
+                        results['enrolled'] = false;
+                    }
+                    results['iasCieAddr'] = iasCieAddr;
+                    return results;
+                },
+            }
         ]
     },
 
