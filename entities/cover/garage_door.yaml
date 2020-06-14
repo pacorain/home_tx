@@ -21,3 +21,7 @@
     }
   state_topic: "OpenZWave/1/node/21/instance/1/commandclass/102/value/281475334897684/"
   value_template: "{{ value_json['Value']['Selected'] }}"
+  state_open: Opened
+  state_opening: Opening
+  state_closed: Closed
+  state_closing: Closing
