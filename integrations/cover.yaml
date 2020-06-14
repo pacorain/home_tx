@@ -1,0 +1,7 @@
+# Cover - things that go up and down
+#
+# See entities/cover
+#
+# https://www.home-assistant.io/integrations/cover/
+
+cover: !include_dir_merge_list ../entities/cover

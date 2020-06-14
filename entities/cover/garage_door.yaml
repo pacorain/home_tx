@@ -1,0 +1,23 @@
+# Z-Wave Garage Door
+#
+# Linear GD00Z-3
+#
+# I'm using the OpenZWave integration, which doesn't support covers yet, so I need to set up the
+# MQTT cover.
+
+- platform: mqtt
+  name: Garage Door
+  device_class: garage
+  command_topic: "OpenZWave/1/command/setvalue"
+  payload_open: >-
+    {
+      "ValueIDKey": 281475334897684,
+      "Value": 3
+    }
+  payload_close: >- # Not so sure this is the correct value...
+    {
+      "ValueIDKey": 281475334897684,
+      "Value": 1
+    }
+  state_topic: "OpenZWave/1/node/21/instance/1/commandclass/102/value/281475334897684/"
+  value_tempate: "{{ value_json.Value.Selected }}"
