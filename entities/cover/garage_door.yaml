@@ -8,7 +8,7 @@
 - platform: mqtt
   name: Garage Door
   device_class: garage
-  command_topic: "OpenZWave/1/command/setvalue"
+  command_topic: "OpenZWave/1/command/setvalue/"
   payload_open: >-
     {
       "ValueIDKey": 281475334897684,
@@ -20,4 +20,4 @@
       "Value": 1
     }
   state_topic: "OpenZWave/1/node/21/instance/1/commandclass/102/value/281475334897684/"
-  value_template: "{{ value_json.Value.Selected }}"
+  value_template: "{{ value_json['Value']['Selected'] }}"
