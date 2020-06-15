@@ -63,3 +63,21 @@ cards:
           - arm_home
           - arm_away
           - arm_night
+  - type: vertical-stack
+    title: 🌡 Temperature
+    cards:
+      - type: history-graph
+        hours_to_show: 12
+        title: Temperature over time
+        entities:
+          - entity: climate.entryway_thermostat
+            name: Living Room
+          - entity: sensor.loft_smoke_detector_temperature_measurement
+            name: Loft
+          - entity: sensor.bedroom_motion_temperature
+            name: Bedroom
+          - entity: sensor.nursery_temperature
+            name: Nursery
+          - entity: sensor.office_door_temperature
+            name: Office
+
