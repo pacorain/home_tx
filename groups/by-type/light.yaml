@@ -7,6 +7,9 @@ all_lights: # If a security alarm is triggered, turn on all the lights
     - light.driveway_light
     - light.rachael_bedside
     - light.loft_lamp
+    - light.left_cloud
+    - light.right_cloud
+    - light.rocker_lamp
 
 smoke_detectors: 
   name: Smoke Detectors

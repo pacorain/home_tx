@@ -25,6 +25,20 @@ cards:
           - entity: light.rachael_bedside
             secondary_info: brightness
             state_color: true 
+          - entity: group.bedside_lights
+            state_color: true
+      - type: entities
+        title: Nursery
+        entities:
+          - entity: light.rocker_lamp
+            secondary_info: brightness
+          - entity: light.left_cloud
+            secondary_info: brightness
+            icon: mdi:cloud-outline
+          - entity: light.right_cloud
+            secondary_info: brightness
+            icon: mdi:cloud-outline
+          - entity: group.clouds
       - type: entities
         title: Loft
         entities:

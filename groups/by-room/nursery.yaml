@@ -1,0 +1,5 @@
+clouds:
+  name: Clouds
+  entities:
+    - light.left_cloud
+    - light.right_cloud
