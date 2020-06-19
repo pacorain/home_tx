@@ -7,3 +7,4 @@
 
 recorder:
   db_url: !secret mysql_connection_string
+  auto_purge: false
