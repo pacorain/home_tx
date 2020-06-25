@@ -25,57 +25,6 @@
       message: A leak has been detected near the air conditioner!
       title: Leak Detected
     service: notify.mobile_app_rachaels_iphone
-- id: '1589774515252'
-  alias: Therapy Notification
-  description: Notify Rachael when Austin arrives at Therapy
-  trigger:
-  - entity_id: person.austin_rainwater
-    event: enter
-    platform: zone
-    zone: zone.therapy
-  condition: []
-  action:
-  - data:
-      message: Austin has arrived at therapy
-      title: Location Update
-    service: notify.mobile_app_rachaels_iphone
-- id: '1589774699215'
-  alias: Therapy -> Home Notification
-  description: Notify Rachael when Austin leaves therapy
-  trigger:
-  - entity_id: person.austin_rainwater
-    event: leave
-    platform: zone
-    zone: zone.therapy
-  condition: []
-  action:
-  - data:
-      message: Austin has left therapy
-      title: Location Update
-    service: notify.mobile_app_rachaels_iphone
-- id: '1590190798505'
-  alias: Test Motion Detection
-  description: ''
-  trigger:
-  - platform: webhook
-    webhook_id: nursery_cam_motion_detection
-  condition: []
-  action:
-  - data:
-      message: Motion detected in the nursery
-    service: notify.mobile_app_austins_iphone
-- id: '1590299917748'
-  alias: Charging?
-  description: This is to test how quickly my iPhone changes to charging in HA.
-  trigger:
-  - entity_id: sensor.austins_iphone_battery_state_2
-    platform: state
-    to: Charging
-  condition: []
-  action:
-  - data:
-      message: Hey, you're charging your phone!
-    service: notify.mobile_app_austins_iphone
 - id: '1590463525502'
   alias: Anti-Snooze
   description: ''
@@ -93,3 +42,84 @@
     service: input_datetime.set_datetime
   - data: {}
     service: script.1590461886795
+- id: '1591589835737'
+  alias: Light up the nursery
+  description: ''
+  trigger:
+  - device_id: 24a7a9e76b1a422cbdd8513900fd191b
+    domain: binary_sensor
+    entity_id: binary_sensor.nursery_motion
+    platform: device
+    type: motion
+  condition:
+  - below: '100'
+    condition: numeric_state
+    entity_id: sensor.nursery_illuminance
+  action:
+  - brightness_pct: 10
+    device_id: a6e3823a3ba841efa71097c6935c9110
+    domain: light
+    entity_id: light.rocker_lamp
+    type: turn_on
+- id: '1591589982645'
+  alias: Turn off nursery lights
+  description: ''
+  trigger:
+  - device_id: 24a7a9e76b1a422cbdd8513900fd191b
+    domain: binary_sensor
+    entity_id: binary_sensor.nursery_motion
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - device_id: a6e3823a3ba841efa71097c6935c9110
+    domain: light
+    entity_id: light.28167_zw3104_plug_in_smart_dimmer_single_plug_level
+    type: turn_off
+- id: '1591979902035'
+  alias: Don’t forget the baby!
+  description: ''
+  trigger:
+  - entity_id: sensor.austins_iphone_activity
+    from: Automotive
+    platform: state
+  condition: []
+  action:
+  - data:
+      data:
+        push:
+          sound:
+            critical: 1
+            name: default
+      message: Don't forget the baby!
+    service: notify.mobile_app_austins_iphone
+- id: '1592459342650'
+  alias: Austin Bedside Button
+  description: ''
+  trigger:
+  - entity_id: sensor.austin_bedside_button_click
+    platform: state
+    to: single
+  condition: []
+  action:
+  - device_id: 9e37e275c7ea47e391c393070ff9c17c
+    domain: light
+    entity_id: light.austin_bedside
+    type: toggle
+- id: '1592459512451'
+  alias: Rachael Button
+  description: ''
+  trigger:
+  - entity_id: sensor.rachael_bedside_button_click
+    platform: state
+    to: single
+  condition: []
+  action:
+  - device_id: 6d76bee1732c48f083abddcf746bffd2
+    domain: light
+    entity_id: light.rachael_bedside
+    type: toggle
