@@ -6,7 +6,10 @@
       value_template: >-
         {# Get all of the temperature values and average them #}
         {%- set values = expand('group.bedroom_temperature')
+            | rejectattr('state', 'equalto', 'unknown')
+            | rejectattr('state', 'equalto', 'unavailable')
             | map(attribute='state')
+            | map('int')
             | list
         -%}
         {{ values | sum / values | count }}
