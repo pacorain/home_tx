@@ -27,14 +27,6 @@
             | map(attribute='state')
             | map('float')
             | min }}
-        minimum_temperature_entity: >-
-          {{ expand('group.bedroom_temperature')
-            | rejectattr('state', 'equalto', 'unknown')
-            | rejectattr('state', 'equalto', 'unavailable')
-            | sort(attribute='state')
-            | first
-            | attr('entity_id')
-          }}
         maximum_temperature: >-
           {{ expand('group.bedroom_temperature')
             | rejectattr('state', 'equalto', 'unknown')
@@ -42,12 +34,10 @@
             | map(attribute='state')
             | map('float')
             | max }}
-        maximum_temperature_entity: >-
+        included_entities: >-
           {{ expand('group.bedroom_temperature')
             | rejectattr('state', 'equalto', 'unknown')
             | rejectattr('state', 'equalto', 'unavailable')
-            | sort(attribute='state')
-            | last
-            | attr('entity_id')
+            | count
           }}
         # TODO: Missing entity count, etc

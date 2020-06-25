@@ -542,6 +542,28 @@ const devices = [
         ]
     },
 
+    {
+        zigbeeModel: ['haloWx'],
+        vendor: 'HaloSmartLabs',
+        description: 'Halo Smoke Detector',
+        endpoint: (device) => {
+            return {'default': 1, 'light': 2, 'co': 3, 'config': 4, 'weather': 5};
+        },
+        configure: async (device, coordinatorEndpoint) => {
+            const sensorEndpoint = device.getEndpoint(1)
+            const lightEndpoint = device.getEndpoint(2)
+            //const alarmEndpoint = device.getEndpoint(4)
+            await bind(sensorEndpoint, coordinatorEndpoint, ['msTemperatureMeasurement', 'msPressureMeasurement', 'msRelativeHumidity'])
+            await bind(lightEndpoint, coordinatorEndpoint, ['genOnOff', 'genLevelCtrl', 'lightingColorCtrl'])
+            //await bind(alarmEndpoint, coordinatorEndpoint, []) 
+            
+
+        },
+        fromZigbee: [
+
+        ]
+    },
+
     // Xiaomi
     {
         zigbeeModel: ['lumi.light.aqcn02'],
