@@ -1,0 +1,12 @@
+- platform: template
+  sensors:
+    bedroom_temperature:
+      friendly_name: Average Bedroom Temperature
+      unit_of_measurement: degrees
+      value_template: >-
+        {# Get all of the temperature values and average them #}
+        {%- set values = expand('group.bedroom_temperature')
+            | map(attribute='state')
+            | list
+        -%}
+        {{ values | sum / values | count }}

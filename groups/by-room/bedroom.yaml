@@ -3,3 +3,11 @@ bedside_lights:
   entities:
     - light.austin_bedside
     - light.rachael_bedside
+
+bedroom_temperature:
+  name: Bedroom Temperature
+  entities: 
+    - sensor.bedroom_door_temperature
+    - sensor.bedroom_motion_temperature
+    - sensor.austin_bedside_button_temperature
+    - sensor.rachael_beside_button_temperature
