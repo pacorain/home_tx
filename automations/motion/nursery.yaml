@@ -1,0 +1,38 @@
+- id: '1591589835737'
+  alias: Light up the nursery
+  description: ''
+  trigger:
+  - device_id: 24a7a9e76b1a422cbdd8513900fd191b
+    domain: binary_sensor
+    entity_id: binary_sensor.nursery_motion
+    platform: device
+    type: motion
+  condition:
+  - below: '100'
+    condition: numeric_state
+    entity_id: sensor.nursery_illuminance
+  action:
+  - brightness_pct: 10
+    device_id: a6e3823a3ba841efa71097c6935c9110
+    domain: light
+    entity_id: light.rocker_lamp
+    type: turn_on
+- id: '1591589982645'
+  alias: Turn off nursery lights
+  description: ''
+  trigger:
+  - device_id: 24a7a9e76b1a422cbdd8513900fd191b
+    domain: binary_sensor
+    entity_id: binary_sensor.nursery_motion
+    for:
+      hours: 0
+      minutes: 15
+      seconds: 0
+    platform: device
+    type: no_motion
+  condition: []
+  action:
+  - device_id: a6e3823a3ba841efa71097c6935c9110
+    domain: light
+    entity_id: light.28167_zw3104_plug_in_smart_dimmer_single_plug_level
+    type: turn_off
