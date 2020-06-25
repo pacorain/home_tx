@@ -4,7 +4,10 @@
       friendly_name: Average Bedroom Temperature
       unit_of_measurement: °F
       entity_id:
-        - group.bedroom_temperature
+        - sensor.austin_bedside_button_temperature
+        - sensor.rachael_bedside_button_temperature
+        - sensor.bedroom_motion_temperature
+        - sensor.bedroom_door_temperature
       device_class: temperature
       value_template: >-
         {# Get all of the temperature values and average them #}
@@ -12,7 +15,39 @@
             | rejectattr('state', 'equalto', 'unknown')
             | rejectattr('state', 'equalto', 'unavailable')
             | map(attribute='state')
-            | map('int')
+            | map('float')
             | list
         -%}
         {{ values | sum / values | count }}
+      attribute_templates:
+        minimum_temperature: >-
+          {{ expand('group.bedroom_temperature')
+            | rejectattr('state', 'equalto', 'unknown')
+            | rejectattr('state', 'equalto', 'unavailable')
+            | map(attribute='state')
+            | map('float')
+            | min }}
+        minimum_temperature_entity: >-
+          {{ expand('group.bedroom_temperature')
+            | rejectattr('state', 'equalto', 'unknown')
+            | rejectattr('state', 'equalto', 'unavailable')
+            | sort(attribute='state')
+            | first
+            | attr('entity_id')
+          }}
+        maximum_temperature: >-
+          {{ expand('group.bedroom_temperature')
+            | rejectattr('state', 'equalto', 'unknown')
+            | rejectattr('state', 'equalto', 'unavailable')
+            | map(attribute='state')
+            | map('float')
+            | max }}
+        maximum_temperature_entity: >-
+          {{ expand('group.bedroom_temperature')
+            | rejectattr('state', 'equalto', 'unknown')
+            | rejectattr('state', 'equalto', 'unavailable')
+            | sort(attribute='state')
+            | last
+            | attr('entity_id')
+          }}
+        # TODO: Missing entity count, etc
