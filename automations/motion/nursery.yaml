@@ -1,38 +1,59 @@
-- id: '1591589835737'
-  alias: Light up the nursery
-  description: ''
+# Nursery motion lighting
+#
+# Right now, the baby is in her bassinet, so whenever we walk in the nursery at night we want the 
+# light to automatically turn on (especially since our hands will probably be full of baby)
+#
+# One quirk about the dimmer module I'm using is that it has its own fading settings. For some
+# it sends a new brightness every step of the fade, so when light.turn_off is called, OpenZWave
+# immediately gets a bunch of signals that the light has been turned back on at decreasing 
+# brightnesses. It often gets confused, and the light suddenly comes back on at a lesser 
+# brightness.
+#
+# I haven't found a workaround, but I've filed https://github.com/pacorain/home/issues/10 in the
+# meantime
+
+- id: nursery_auto_light_on
+  alias: Nursery Light
+  description: Automatically light up the nursery when motion is detected
   trigger:
-  - device_id: 24a7a9e76b1a422cbdd8513900fd191b
+  - platform: device
+    type: motion
+    device_id: 24a7a9e76b1a422cbdd8513900fd191b
     domain: binary_sensor
     entity_id: binary_sensor.nursery_motion
-    platform: device
-    type: motion
   condition:
-  - below: '100'
-    condition: numeric_state
+  # Instead of using the sun state, let's just base it off of how bright it is in the room
+  - condition: numeric_state
     entity_id: sensor.nursery_illuminance
-  action:
-  - brightness_pct: 10
-    device_id: a6e3823a3ba841efa71097c6935c9110
-    domain: light
+    below: '75'
+  # Don't change the brightness if the light is already on
+  - condition: state
     entity_id: light.rocker_lamp
-    type: turn_on
-- id: '1591589982645'
-  alias: Turn off nursery lights
-  description: ''
+    state: 'off'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.rocker_lamp
+      brightness: 10
+
+
+- id: nursery_auto_light_off
+  alias: Nursery Light Off
+  description: Automatically turn off the rocker lamp if no motion is detected
   trigger:
-  - device_id: 24a7a9e76b1a422cbdd8513900fd191b
+  - platform: device
+    type: no_motion
+    device_id: 24a7a9e76b1a422cbdd8513900fd191b
     domain: binary_sensor
     entity_id: binary_sensor.nursery_motion
     for:
       hours: 0
       minutes: 15
       seconds: 0
-    platform: device
-    type: no_motion
-  condition: []
   action:
-  - device_id: a6e3823a3ba841efa71097c6935c9110
-    domain: light
-    entity_id: light.28167_zw3104_plug_in_smart_dimmer_single_plug_level
-    type: turn_off
+  - service: light.turn_off
+    entity_id: light.rocker_lamp
+    data:
+      # TODO: Does this work?
+      # Use HA to dim light instead of dimmer module. See note at top.
+      transition: 3
