@@ -2,7 +2,10 @@
   sensors:
     bedroom_temperature:
       friendly_name: Average Bedroom Temperature
-      unit_of_measurement: degrees
+      unit_of_measurement: °F
+      entity_id:
+        - group.bedroom_temperature
+      device_class: temperature
       value_template: >-
         {# Get all of the temperature values and average them #}
         {%- set values = expand('group.bedroom_temperature')
