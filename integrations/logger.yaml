@@ -5,4 +5,4 @@
 logger:
   default: info
   logs:
-    pymyq: debug
+    zigpy: debug
