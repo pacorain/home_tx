@@ -6,3 +6,4 @@ logger:
   default: info
   logs:
     zigpy: debug
+    homeassistant.components.zha: debug
