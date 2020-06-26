@@ -38,6 +38,7 @@
           {{ expand('group.bedroom_temperature')
             | rejectattr('state', 'equalto', 'unknown')
             | rejectattr('state', 'equalto', 'unavailable')
+            | list
             | count
           }}
         # TODO: Missing entity count, etc
