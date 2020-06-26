@@ -1,0 +1,14 @@
+{
+    "domain": "myquirks",
+    "name": "Paco Rainwater's Custom Quirks",
+    "dependencies": [
+    ],
+    "codeowners": [
+      "@pacorain"
+    ],
+    "homeassistant": "0.97.0",
+    "requirements": [
+        "zhaquirks"
+    ]
+  }
+  
