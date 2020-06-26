@@ -30,6 +30,14 @@
   - condition: state
     entity_id: light.rocker_lamp
     state: 'off'
+  # Don't run this automation more than once every 30 minutes
+  - condition: template
+    value_template: >-
+      {{ ( 
+          as_timestamp(now) 
+            - as_timestamp(state_attr('automation.nursery_auto_light_on', 'last_triggered')) 
+            | int(0) 
+      ) > 1800 }}
   action:
   - service: light.turn_on
     data:
