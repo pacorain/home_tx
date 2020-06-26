@@ -4,3 +4,5 @@
 
 logger:
   default: info
+  logs:
+    pymyq: debug
