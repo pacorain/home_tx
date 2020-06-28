@@ -8,7 +8,7 @@
     ],
     "homeassistant": "0.97.0",
     "requirements": [
-        "zhaquirks"
+        "zigpy"
     ]
   }
   

@@ -1,0 +1,6 @@
+# My custom Zigbee quirks
+#
+# I have some old Zigbee devices I'm trying to get working. I don't exactly know what I'm doing but
+# I'm going to go ahead and import the module to see if it's working.
+
+myquirks:
