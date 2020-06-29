@@ -1,0 +1,49 @@
+# Secondary Winddown
+#
+# This automation helps my wife get ready for bed when I am already in bed. When she opens the 
+# bedroom door, it turns on my light very softly, and sends her a notification to turn off all
+# the lights and arm the security system when she's ready.
+
+- id: secondary_winddown
+  alias: Secondary Winddown
+  description: Turn on a dim light when a second person is winding down for the night
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_door
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.secondary_winddown
+      state: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.austin_bedside
+        color_temp: 575
+        brightness_pct: 25
+        transition: 5
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.secondary_winddown
+    - service: notify.mobile_app_rachaels_iphone
+      data:
+        title: Getting ready for bed?
+        message: Tap and hold this message to turn off the lights and arm the security system.
+        data:
+          push:
+            category: good_night
+    - delay: '00:05'
+    - service: light.turn_off
+      entity_id: light.loft_lamp
+
+- id: secondary_winddown_complete
+  alias: Lights Out & Arm
+  trigger:
+    - platform: event
+      event_type: ios.notification_action_fired
+      event_data:
+        actionName: GOOD_NIGHT
+  action:
+    - service: light.turn_off
+      entity_id: group.all_lights
+    - service: alarm_control_panel.alarm_arm_night
+      entity_id: alarm_control_panel.home_alarm

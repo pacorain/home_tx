@@ -1,0 +1,14 @@
+# iOS configuration
+#
+# This is required for actionable notifications.
+#
+# https://companion.home-assistant.io/docs/notifications/actionable-notifications/#definitions
+
+ios:
+  push:
+    categories:
+      - name: Good Night
+        identifier: good_night
+        actions:
+          - identifier: 'GOOD_NIGHT'
+            title: 'Lights Out & Arm'
