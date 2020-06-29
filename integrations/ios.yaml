@@ -11,4 +11,4 @@ ios:
         identifier: good_night
         actions:
           - identifier: 'GOOD_NIGHT'
-            title: 'Lights Out & Arm'
+            title: 'Lights Out and Arm'
