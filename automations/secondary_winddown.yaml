@@ -27,7 +27,7 @@
     - service: notify.mobile_app_rachaels_iphone
       data:
         title: Getting ready for bed?
-        message: Tap and hold this message to turn off the lights and arm the security system.
+        message: Tap and hold this message to turn off the lights and arm the security system. (This also may not work, I'm still figuring out notificaiton buttons.)
         data:
           push:
             category: good_night

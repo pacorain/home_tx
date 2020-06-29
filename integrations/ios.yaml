@@ -12,3 +12,4 @@ ios:
         actions:
           - identifier: 'GOOD_NIGHT'
             title: 'Lights Out and Arm'
+            destructive: true
