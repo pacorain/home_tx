@@ -1,0 +1,6 @@
+- platform: scrape
+  resource: https://beta.apple.com/sp/betaprogram/
+  select: ".typography-headline-elevated"
+  name: Apple Beta Homepage
+  headers:
+    User-Agent: Home Assistant
