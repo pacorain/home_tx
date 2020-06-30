@@ -1,5 +1,10 @@
 - platform: template
   sensors:
+    outdoor_temperature:
+      friendly_name: Outdoor Temperature
+      unit_of_measurement: °F
+      device_class: temperature
+      value_template: "{{ state_attr('weather.home', 'temperature') }}"
     bedroom_temperature:
       friendly_name: Average Bedroom Temperature
       unit_of_measurement: °F

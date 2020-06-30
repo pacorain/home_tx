@@ -85,3 +85,15 @@
     domain: light
     entity_id: light.rachael_bedside
     type: toggle
+- id: '1593492004878'
+  alias: Turn on Garage AC at 5AM
+  description: ''
+  trigger:
+  - at: 05:00
+    platform: time
+  condition: []
+  action:
+  - device_id: a386636389a54a04b53755a05b687db1
+    domain: switch
+    entity_id: switch.garage_ac
+    type: turn_on

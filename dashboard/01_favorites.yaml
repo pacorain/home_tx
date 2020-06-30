@@ -81,4 +81,8 @@ cards:
             name: Nursery
           - entity: sensor.office_door_temperature
             name: Office
+          - entity: sensor.garage_motion_temperature
+            name: Garage
+          - entity: sensor.outdoor_temperature
+            name: Outdoor
 
