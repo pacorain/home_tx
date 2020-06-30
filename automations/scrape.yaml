@@ -1,3 +1,9 @@
+# Apple Beta notification
+#
+# Uses the scrape sensor to monitor for changes to the web page with information on Apple's public 
+# beta program. If a change is detected, it sends me a notification so I can go and download all
+# the betas.
+
 - id: apple_beta_notification
   alias: Notify me if a new Apple Beta is available
   trigger:
