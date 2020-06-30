@@ -1,0 +1,51 @@
+# Garage lighting
+#
+# We just have a basic dimmable smart bulb, and a motion sensor. The only thing extra about this 
+# automation is that it uses "transition" to slowly dim the bulb so if someone is beyond the motion
+# sensor's reach for a while, they have some time to "trip" it again before they have to stumble 
+# around in the dark
+
+# Turn on the garage light
+- id: garage_light
+  alias: Garage Light
+  description: Automatically control the garage overhead light
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_motion
+      to: 'on'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.garage_light_auto
+      state: 'on'
+      # Don't mess with the light if it's already on
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: light.garage_overhead
+          state: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.garage_overhead
+        brightness_pct: 100
+        transition: 2
+
+# Turn off the garage light
+- id: garage_light_off
+  alias: Garage Light Off
+  description: Automatically turn off the garage overhead light
+  trigger: 
+    - platform: state
+      entity_id: binary_sensor.garage_motion
+      to: 'off'
+      for:
+        minutes: 5
+  condition:
+    - condition: state
+      entity_id: input_boolean.garage_light_auto
+      state: 'on'
+  action:
+    - service: light.turn_off
+      data: 
+        entity_id: light.garage_overhead
+        transition: 60 # TODO: Is this so long that the changes won't be noticed?
