@@ -1,0 +1,36 @@
+# Garage climate
+#
+# I know. It sounds ridiculous.
+#
+# The garage is on the same end of our house as a couple of rooms the HVAC does not reach very well.
+# As a result, these rooms get particularily hot, and I spend 8 hours a day working in one of them
+# thanks to COVID-19. 
+#
+# When we bought the house, there was a window unit in the garage that looks like someone just cut a
+# hole in the wall to stick a window unit in it so they could use the workbench in the garage. We're
+# not actually trying to cool the garage for the garage's sake; rather, we've found that keeping the
+# garage cool helps keep the rooms above it a little cooler. It's a really cheap and old window unit
+# but it does its job, and I've been able to still save some energy by attaching it to a smart plug.
+#
+# So yeah, that's what this does. It keeps the garage cool, but not to the point that we're just 
+# wasting energy.
+#
+# https://www.home-assistant.io/integrations/generic_thermostat/
+
+- platform: generic_thermostat
+  name: Garage
+  heater: switch.garage_ac # It bothers me that we can't just have an "ac_unit" key or something
+  ac_mode: true
+  target_sensor: sensor.garage_motion_temperature
+  target_temp: 72 # I really hope it know this is Fahrenheit
+  min_temp: 65
+  max_temp: 90
+  min_cycle_duration: 
+    minutes: 5
+  # Since this is more to help our HVAC system, I'm comfortable with the temperature varying to save
+  # energy.
+  cold_tolerance: 2
+  hot_tolerance: 2
+  initial_hvac_mode: 'off' # Just to make sure I didn't just set it to 72 C
+  precision: 0.1
+  
