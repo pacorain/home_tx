@@ -12,28 +12,11 @@
     service: light.turn_on
   - delay: '1'
   - data:
-      brightness: 127
+      brightness: 191
       rgb_color:
       - 255
       - 127
       - 0
-      transition: 300
-    entity_id: light.austin_bedside
-    service: light.turn_on
-  - delay: '300'
-  - data:
-      brightness: 127
-      color_temp: 666
-      transition: 0
-    entity_id: light.austin_bedside
-    service: light.turn_on
-  - delay: '1'
-  - condition: state
-    entity_id: light.austin_bedside
-    state: 'on'
-  - data:
-      brightness: 255
-      color_temp: 142
-      transition: 300
+      transition: 600
     entity_id: light.austin_bedside
     service: light.turn_on
