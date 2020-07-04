@@ -28,6 +28,7 @@ homekit:
       - camera.aarlo_downstairs_cam
       - camera.aarlo_loft
       - input_boolean.secondary_winddown
+      - input_boolean.living_room_movie_light
     exclude_entity_globs:
       - light.*_smoke_* # The smoke detector lights are just a gmmick and I don't want them in HomeKit
     exclude_entities:

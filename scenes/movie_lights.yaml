@@ -1,0 +1,8 @@
+# Movie Lights scenes - defines how the lights dim when we're watching a movie
+
+- name: Living Room Movie Lights
+  entities:
+    light.tall_lamp:
+      state: 'on'
+      kelvin: 2700
+      brightness_pct: 15
