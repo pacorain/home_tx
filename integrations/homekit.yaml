@@ -10,40 +10,41 @@
 
 homekit: 
 - name: HomeKit Bridge
-  include_domains:
-    - light
-    - climate
-    - lock
-    - sensor
-    - cover
-  include_entity_globs:
-    - binary_sensor.*_motion
-    - binary_sensor.aarlo_motion_*
-    - binary_sensor.*_door
-    - binary_sensor.*_windows
-  include_entities:
-    - alarm_control_panel.home_alarm
-    - camera.nursery_cam
-    - camera.aarlo_downstairs_cam
-    - camera.aarlo_loft
-    - input_boolean.secondary_winddown
-  exclude_entity_globs:
-    - light.*_smoke_* # The smoke detector lights are just a gmmick and I don't want them in HomeKit
-  exclude_entities:
-    # Ring entities (except the light for now)
-    - binary_sensor.front_door_ding
-    - binary_sensor.front_door_motion
-    - binary_sensor.driveway_motion
-    - sensor.front_door_battery
-    - sensor.driveway_battery
-  entity_config:
-    alarm_control_panel.home_alarm:
-      name: Security Alarm
-    camera.aarlo_downstairs_cam:
-      name: Living Room
-      linked_battery_sensor: sensor.aarlo_battery_level_downstairs_cam
-      linked_motion_sensor: binary_sensor.aarlo_motion_downstairs_cam
-    camera.aarlo_loft:
-      name: Loft
-      linked_battery_sensor: sensor.aarlo_battery_level_loft
-      linked_motion_sensor: binary_sensor.aarlo_motion_loft
+  filter:
+    include_domains:
+      - light
+      - climate
+      - lock
+      - sensor
+      - cover
+    include_entity_globs:
+      - binary_sensor.*_motion
+      - binary_sensor.aarlo_motion_*
+      - binary_sensor.*_door
+      - binary_sensor.*_windows
+    include_entities:
+      - alarm_control_panel.home_alarm
+      - camera.nursery_cam
+      - camera.aarlo_downstairs_cam
+      - camera.aarlo_loft
+      - input_boolean.secondary_winddown
+    exclude_entity_globs:
+      - light.*_smoke_* # The smoke detector lights are just a gmmick and I don't want them in HomeKit
+    exclude_entities:
+      # Ring entities (except the light for now)
+      - binary_sensor.front_door_ding
+      - binary_sensor.front_door_motion
+      - binary_sensor.driveway_motion
+      - sensor.front_door_battery
+      - sensor.driveway_battery
+    entity_config:
+      alarm_control_panel.home_alarm:
+        name: Security Alarm
+      camera.aarlo_downstairs_cam:
+        name: Living Room
+        linked_battery_sensor: sensor.aarlo_battery_level_downstairs_cam
+        linked_motion_sensor: binary_sensor.aarlo_motion_downstairs_cam
+      camera.aarlo_loft:
+        name: Loft
+        linked_battery_sensor: sensor.aarlo_battery_level_loft
+        linked_motion_sensor: binary_sensor.aarlo_motion_loft
