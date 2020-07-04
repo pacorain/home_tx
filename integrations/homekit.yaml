@@ -37,6 +37,8 @@ homekit:
       - binary_sensor.driveway_motion
       - sensor.front_door_battery
       - sensor.driveway_battery
+      # Don't send average temperatures
+      - sensor.bedroom_temperature
   entity_config:
     alarm_control_panel.home_alarm:
       name: Security Alarm
