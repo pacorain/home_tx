@@ -37,14 +37,14 @@ homekit:
       - binary_sensor.driveway_motion
       - sensor.front_door_battery
       - sensor.driveway_battery
-    entity_config:
-      alarm_control_panel.home_alarm:
-        name: Security Alarm
-      camera.aarlo_downstairs_cam:
-        name: Living Room
-        linked_battery_sensor: sensor.aarlo_battery_level_downstairs_cam
-        linked_motion_sensor: binary_sensor.aarlo_motion_downstairs_cam
-      camera.aarlo_loft:
-        name: Loft
-        linked_battery_sensor: sensor.aarlo_battery_level_loft
-        linked_motion_sensor: binary_sensor.aarlo_motion_loft
+  entity_config:
+    alarm_control_panel.home_alarm:
+      name: Security Alarm
+    camera.aarlo_downstairs_cam:
+      name: Living Room
+      linked_battery_sensor: sensor.aarlo_battery_level_downstairs_cam
+      linked_motion_sensor: binary_sensor.aarlo_motion_downstairs_cam
+    camera.aarlo_loft:
+      name: Loft
+      linked_battery_sensor: sensor.aarlo_battery_level_loft
+      linked_motion_sensor: binary_sensor.aarlo_motion_loft
