@@ -30,7 +30,7 @@
           - light.couch_lamp
     - service: scene.turn_on
       data:
-        transition: 15
+        transition: 6
         entity_id: scene.living_room_movie_lights
 
 - id: living_room_movie_lights_up
@@ -45,5 +45,5 @@
   action:
     - service: scene.turn_on
       data:
-        transition: 7
+        transition: 3
         entity_id: scene.living_room_lights_restore
