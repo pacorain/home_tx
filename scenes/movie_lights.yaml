@@ -6,3 +6,7 @@
       state: 'on'
       kelvin: 2700
       brightness_pct: 15
+    light.couch_lamp:
+      state: 'on'
+      kelvin: 2700
+      brightness_pct: 15
