@@ -1,0 +1,7 @@
+# Switch
+#
+# Things that switch on and off (and aren't lights)
+#
+# https://www.home-assistant.io/integrations/switch/
+
+switch: !include_dir_merge_list ../entities/switch
