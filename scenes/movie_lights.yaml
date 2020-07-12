@@ -5,8 +5,8 @@
     light.tall_lamp:
       state: 'on'
       kelvin: 2700
-      brightness_pct: 15
+      brightness_pct: 5
     light.couch_lamp:
       state: 'on'
       kelvin: 2700
-      brightness_pct: 15
+      brightness_pct: 5
