@@ -28,6 +28,7 @@
         snapshot_entities:
           - light.tall_lamp
           - light.couch_lamp
+    - delay: '00:01'
     - service: scene.turn_on
       data:
         transition: 6
@@ -47,3 +48,6 @@
       data:
         transition: 3
         entity_id: scene.living_room_lights_restore
+    - service: scene.create
+      data:
+        scene_id: living_room_lights_restore
