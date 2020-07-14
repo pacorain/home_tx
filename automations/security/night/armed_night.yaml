@@ -1,16 +1,54 @@
 # Armed Night - defines what to monitor and what to do if something gets triggered
 # at night.
 
+
 - id: trigger_night_alarm
-  alias: Trigger alarm if intrusion is detected at night
   trigger:
     - platform: state
-      entity_id: group.armed_night_sensors
+      entity_id: sensor.security_night_tripped_devices
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_night
+    - condition: template
+      # Only trip the alarm if the number of tripped sensors *increases*. For example, if a motion
+      # sensor goes from Detected to Clear, it should not trip the alarm.
+      value_template: >
+        {{ trigger.to_state.state | int > trigger.from_state.state | int }}
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+
+- id: bypass_night_alarm_with_door
+  trigger: 
+    - platform: state
+      entity_id: binary_sensor.bedroom_door
       to: 'on'
   condition:
     - condition: state
       entity_id: alarm_control_panel.home_alarm
       state: armed_night
   action:
-    - service: alarm_control_panel.alarm_trigger
+    - service: alarm_control_panel.alarm_arm_custom_bypass
       entity_id: alarm_control_panel.home_alarm
+    - service: notify.everyone_ios
+      data:
+        title: Security Alarm Bypassed
+        message: Your security alarm is temporarily disabled. Close the door to re-enable it.
+
+- id: rearm_night_alarm_with_door
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.bedroom_door
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.home_alarm
+      state: armed_custom_bypass
+  action:
+    - service: alarm_control_panel.alarm_arm_night
+      entity_id: alarm_control_panel.home_alarm
+    - service: notify.everyone_ios
+      data:
+        title: Security Alarm Armed
+        message: The bedroom door has been closed. Re-arming the security alarm.

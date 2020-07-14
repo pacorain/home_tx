@@ -55,3 +55,55 @@
               | last
               | attr('entity_id')
           }}
+
+- platform: template
+  sensors:
+    security_night_tripped_devices:
+      friendly_name: Tripped Night Devices
+      value_template: >
+        {# Take the group armed_away_devices and expand it, filter out devices that are 'on', and 
+          count the list  #}
+        {{ expand('group.armed_night_sensors') 
+            | selectattr('state','equalto','on') 
+            | list 
+            | count 
+        }}
+      availability_template: >
+        {# Take the group armed_night_devices and count the devices that *aren't* unavailable #}
+        {{ expand('group.armed_night_sensors') 
+            | rejectattr('state','equalto','unavailable') 
+            | list 
+            | count > 0 
+        }}
+      attribute_templates:
+        device_list: >
+          {# List the entity ID's that are tripped #}
+          {{ expand('group.armed_night_sensors') 
+              | selectattr('state','equalto','on') 
+              | map(attribute='entity_id')
+              | join('\n')
+          }}
+        unavailable_device_list: >
+          {# List of entity ID's that are unavailable #}
+          {{ expand('group.armed_night_sensors') 
+              | selectattr('state','equalto','unavailable') 
+              | map(attribute='entity_id')
+              | join('\n')
+          }}
+        unavailable_device_count: >
+          {# Number of entities that are unavailable #}
+          {{ 
+              expand('group.armed_night_sensors')
+                | selectattr('state','equalto','unavailable') 
+                | list
+                | count
+          }}
+        most_recently_tripped_device: >
+          {# The most recently tripped device #}
+          {{
+            expand('group.armed_night_sensors')
+              | selectattr('state','equalto','on')
+              | sort(attribute='last_updated')
+              | last
+              | attr('entity_id')
+          }}
