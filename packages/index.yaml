@@ -1,0 +1,11 @@
+# Package Index
+#
+# I have decided to organize my YAML functionality into actual "packages". Whenever a package is
+# added, it needs to be listed here. To learn more about what each package does, I will include 
+# more info to the package.yaml file, as well as potentially a README.md file.
+#
+# See https://github.com/pacorain/home/issues/13
+
+# Legacy package keeps old organization method functioning for while
+legacy: !include_dir_merge_named ../integrations/
+tasmota: !include tasmota/package.yaml

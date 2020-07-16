@@ -8,4 +8,4 @@
 # https://www.home-assistant.io/docs/configuration/packages/
 
 homeassistant:
-  packages: !include_dir_named integrations
+  packages: !include packages/index.yaml
