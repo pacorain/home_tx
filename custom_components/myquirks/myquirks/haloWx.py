@@ -1,12 +1,9 @@
 from zigpy.quirks import CustomDevice, CustomCluster, CustomEndpoint
 from zigpy.profiles import zha
-from zigpy.zcl.clusters.general import Basic, Identify, Ota, OnOff, LevelControl
+from zigpy.zcl.clusters.general import Basic, PowerConfiguration, Identify, Ota, OnOff, LevelControl
 from zigpy.zcl.clusters.measurement import TemperatureMeasurement, PressureMeasurement, RelativeHumidity
 from zigpy.zcl.clusters.security import IasWd, IasZone
 from zigpy.zcl.clusters.lighting import Color
-from zigpy.zcl.clusters.manufacturer_specific import ManufacturerSpecificCluster
-
-from zhaquirks import PowerConfigurationCluster
 
 from ..const import (
     MODELS_INFO,
@@ -43,12 +40,12 @@ class HaloWx(CustomDevice):
                 DEVICE_TYPE: zha.DeviceType.LEVEL_CONTROLLABLE_OUTPUT,
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
-                    PowerConfigurationCluster.cluster_id,
+                    PowerConfiguration.cluster_id,
                     Identify.cluster_id,
                     TemperatureMeasurement.cluster_id,
                     PressureMeasurement.cluster_id,
                     RelativeHumidity.cluster_id,
-                    ZoneStatus.cluster_id,
+                    IasZone.cluster_id,
                     IasWd.cluster_id
                 ],
                 OUTPUT_CLUSTERS: [
@@ -59,6 +56,7 @@ class HaloWx(CustomDevice):
                 PROFILE_ID: zha.PROFILE_ID,
                 DEVICE_TYPE: zha.DeviceType.IAS_WARNING_DEVICE,
                 INPUT_CLUSTERS: [
+                    Identify.cluster_id,
                     OnOff.cluster_id,
                     LevelControl.cluster_id,
                     Color.cluster_id
@@ -68,6 +66,7 @@ class HaloWx(CustomDevice):
                 PROFILE_ID: zha.PROFILE_ID,
                 DEVICE_TYPE: zha.DeviceType.IAS_ZONE,
                 INPUT_CLUSTERS:[
+                    Identify.cluster_id,
                     ZoneStatus.cluster_id
                 ]
             },
@@ -93,7 +92,7 @@ class HaloWx(CustomDevice):
             1: {
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
-                    PowerConfigurationCluster.cluster_id,
+                    PowerConfiguration.cluster_id,
                     Identify.cluster_id,
                     TemperatureMeasurement.cluster_id,
                     PressureMeasurement.cluster_id,
@@ -107,6 +106,7 @@ class HaloWx(CustomDevice):
             },
             2: {
                 INPUT_CLUSTERS: [
+                    Identify.cluster_id,
                     OnOff.cluster_id,
                     LevelControl.cluster_id,
                     Color.cluster_id
@@ -114,6 +114,7 @@ class HaloWx(CustomDevice):
             },
             3: {
                 INPUT_CLUSTERS:[
+                    Identify.cluster_id,
                     ZoneStatus.cluster_id
                 ]
             },
