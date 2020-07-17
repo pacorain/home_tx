@@ -1,0 +1,8 @@
+# Automatic light controls
+#
+# I do wish there were an elegant way in Lovelace and in HomeKit to attach the automatic control to
+# the lights themselves.
+
+garage_light_auto:
+  name: Garage Light Automatic Control
+  initial: on

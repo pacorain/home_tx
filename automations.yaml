@@ -85,3 +85,60 @@
     domain: light
     entity_id: light.rachael_bedside
     type: toggle
+- id: '1594009139252'
+  alias: Cool garage at 5 AM
+  description: ''
+  trigger:
+  - at: 05:00
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - data:
+      hvac_mode: cool
+    entity_id: climate.garage
+    service: climate.set_hvac_mode
+- id: '1594010597767'
+  alias: Start Secondary Winddown
+  description: ''
+  trigger:
+  - entity_id: input_boolean.secondary_winddown
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      brightness: 1
+      rgb_color:
+      - 0
+      - 0
+      - 255
+      transition: 300
+    entity_id:
+    - light.rachael_bedside
+    - light.austin_bedside
+    service: light.turn_on
+  - timeout: '300'
+    wait_template: ''
+  - data: {}
+    entity_id:
+    - light.austin_bedside
+    - light.rachael_bedside
+    service: light.turn_off
+- id: '1594641410814'
+  alias: Task Complete
+  description: Increase the Task Complete counter
+  trigger:
+  - platform: webhook
+    webhook_id: task_complete
+  condition: []
+  action:
+  - data: {}
+    entity_id: input_number.tasks_worked
+    service: input_number.increment

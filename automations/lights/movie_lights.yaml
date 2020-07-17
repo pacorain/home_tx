@@ -1,0 +1,53 @@
+# Movie Lights
+#
+# Improves our movie watching experience by dimming the lights for us, and automatically turning
+# them back up when we pause, etc.
+
+- id: living_room_movie_light_dim
+  alias: Movie Lights Living Room - Playing
+  trigger:
+    - platform: state
+      entity_id: input_boolean.living_room_movie_light
+      to: 'on'
+    - platform: state
+      entity_id: media_player.living_room_tv
+      to: 'playing'
+  condition:
+    - condition: state
+      entity_id: input_boolean.living_room_movie_light
+      state: 'on'
+    - condition: state
+      entity_id: media_player.living_room_tv
+      state: 'playing'
+    - condition: template
+      value_template: "{{ state_attr('media_player.living_room_tv', 'media_content_type') == 'video' }}"
+  action:
+    - service: scene.create
+      data:
+        scene_id: living_room_lights_restore
+        snapshot_entities:
+          - light.tall_lamp
+          - light.couch_lamp
+    - delay: '00:01'
+    - service: scene.turn_on
+      data:
+        transition: 6
+        entity_id: scene.living_room_movie_lights
+
+- id: living_room_movie_lights_up
+  alias: Movie Lights Living Room - paused
+  trigger:
+    - platform: state
+      entity_id: media_player.living_room_tv
+      from: 'playing'
+    - platform: state
+      entity_id: input_boolean.living_room_movie_light
+      to: 'off'
+  action:
+    - service: scene.turn_on
+      data:
+        transition: 3
+        entity_id: scene.living_room_lights_restore
+    - service: scene.create
+      data:
+        scene_id: living_room_lights_restore

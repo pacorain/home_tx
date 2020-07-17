@@ -1,0 +1,14 @@
+# Apple Public Beta scraper
+#
+# Checks the Apple beta program page. Specifically, it looks for the first content header, which 
+# currently just says "Coming Soon". So hopefully, when Apple releases the public betas, they won't 
+# do so with the header, "Coming Soon"...otherwise, I won't get notified that anything changed.
+#
+# https://www.home-assistant.io/integrations/scrape/
+
+- platform: scrape
+  resource: https://beta.apple.com/sp/betaprogram/
+  select: ".typography-headline-elevated"
+  name: Apple Beta Homepage
+  headers:
+    User-Agent: Home Assistant

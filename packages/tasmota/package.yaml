@@ -1,0 +1,5 @@
+# Tasmota package
+#
+# See README.md
+
+light: !include mqtt_lights.yaml

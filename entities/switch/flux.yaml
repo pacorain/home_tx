@@ -1,0 +1,15 @@
+# Flux
+#
+# Gradually changes the colors of my lights throughout the day to help my brain transition between
+# awake and asleep. Or at least, that's the hope...
+#
+# https://www.home-assistant.io/integrations/flux/
+
+- platform: flux
+  lights: 
+    - light.office_lamp
+  name: Office Flux
+  start_colortemp: 6500
+  stop_colortemp: 2700
+  start_time: "07:55" # Temporary testing value
+  mode: mired

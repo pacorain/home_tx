@@ -1,0 +1,8 @@
+# Movie Lights
+#
+# When turned on, the lights will dim whenever we watch something.
+
+living_room_movie_light:
+  name: Living Room Movie Light
+  initial: false
+  icon: mdi:movie-filter-outline

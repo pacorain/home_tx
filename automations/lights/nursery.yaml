@@ -34,10 +34,10 @@
   - condition: template
     value_template: >-
       {{ ( 
-          as_timestamp(now) 
-            - as_timestamp(state_attr('automation.nursery_auto_light_on', 'last_triggered')) 
-            | int(0) 
-      ) > 1800 }}
+          as_timestamp(now()) 
+            - as_timestamp(state_attr('automation.nursery_light', 'last_triggered')))
+            | int
+        > 1800 }}
   action:
   - service: light.turn_on
     data:

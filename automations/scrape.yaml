@@ -1,0 +1,22 @@
+# Apple Beta notification
+#
+# Uses the scrape sensor to monitor for changes to the web page with information on Apple's public 
+# beta program. If a change is detected, it sends me a notification so I can go and download all
+# the betas.
+
+- id: apple_beta_notification
+  alias: Notify me if a new Apple Beta is available
+  trigger:
+    - platform: state
+      entity_id: sensor.apple_beta_homepage
+  action:
+    - service: notify.mobile_app_austins_iphone
+      data_template:
+        title: Apple Beta
+        message: An update has been made to the Apple beta page!
+        data:
+          subtitle: "{{ states('sensor.apple_beta_homepage') }}"
+          attachment:
+            url: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/200px-Apple_logo_grey.svg.png
+          push:
+            thread_id: apple_beta

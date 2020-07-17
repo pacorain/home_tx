@@ -7,10 +7,21 @@
       entity_id: alarm_control_panel.home_alarm
       to: 'triggered'
   action:
-    - service: notify.mobile_app_austins_iphone # Just notify me for now while this is in progress
+    - service: notify.everyone_ios
       data_template:
-        message: Security Alarm
-        title: Something has been triggered # TODO: Can I use templates to figure out WHAT'S been triggered?
+        title: Security Alarm
+        message: >-
+          Your alarm has been triggered! 
+          {# TODO: figure out tripped sensors 
+          Tripped sensors are 
+          {%- if trigger.from_state.attributes.previous_state == 'armed_away' -%}
+            {{ 
+              state_attr('sensor.security_away_tripped_devices', 'device_list').split('\n')
+            }}
+          {%- elif trigger.from_state.attributes.previous_state == 'armed_night' -%}
+
+          {%- endif %}
+          #}
         data:
           push:
             sound:
@@ -22,6 +33,8 @@
       entity_id: camera.aarlo_loft
     - service: light.turn_on
       entity_id: group.all_lights
+    - service: switch.turn_on
+      entity_id: switch.living_room_siren
 
 - id: stop_triggered_alarm
   alias: Stop an alarm when it is no longer triggered
@@ -34,3 +47,5 @@
       entity_id: camera.aarlo_downstairs_cam
     - service: aarlo.camera_stop_recording
       entity_id: camera.aarlo_loft
+    - service: switch.turn_off
+      entity_id: switch.living_room_siren
