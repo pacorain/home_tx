@@ -6,4 +6,4 @@ logger:
   default: info
   logs:
     homeassistant.components.zha: debug
-    bellows: debug
+    zigpy.quirks: debug

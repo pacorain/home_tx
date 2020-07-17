@@ -40,7 +40,7 @@ class HaloWx(CustomDevice):
         ENDPOINTS: {
             1: {
                 PROFILE_ID: zha.PROFILE_ID,
-                DEVICE_TYPE: IasZone.ZoneType.Fire_Sensor,
+                DEVICE_TYPE: zha.DeviceType.LEVEL_CONTROLLABLE_OUTPUT,
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
                     PowerConfigurationCluster.cluster_id,
@@ -57,7 +57,7 @@ class HaloWx(CustomDevice):
             },
             2: {
                 PROFILE_ID: zha.PROFILE_ID,
-                DEVICE_TYPE: zha.DeviceType.COLOR_DIMMABLE_LIGHT,
+                DEVICE_TYPE: zha.DeviceType.IAS_WARNING_DEVICE,
                 INPUT_CLUSTERS: [
                     OnOff.cluster_id,
                     LevelControl.cluster_id,
@@ -66,7 +66,7 @@ class HaloWx(CustomDevice):
             },
             3: {
                 PROFILE_ID: zha.PROFILE_ID,
-                DEVICE_TYPE: IasZone.ZoneType.Carbon_Monoxide_Sensor,
+                DEVICE_TYPE: zha.DeviceType.IAS_ZONE,
                 INPUT_CLUSTERS:[
                     ZoneStatus.cluster_id
                 ]

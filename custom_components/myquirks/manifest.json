@@ -2,6 +2,7 @@
     "domain": "myquirks",
     "name": "Austin Rainwater's Custom Quirks",
     "dependencies": [
+      "zha"
     ],
     "codeowners": [
       "@pacorain"
