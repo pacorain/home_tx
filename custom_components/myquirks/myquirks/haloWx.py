@@ -14,7 +14,6 @@ from ..const import (
     OUTPUT_CLUSTERS
 )
 
-
 class ZoneStatus(CustomCluster):
     cluster_id = 0x0500
 
@@ -105,6 +104,7 @@ class HaloWx(CustomDevice):
                 ]
             },
             2: {
+                DEVICE_TYPE: zha.DeviceType.COLOR_DIMMABLE_LIGHT,
                 INPUT_CLUSTERS: [
                     Identify.cluster_id,
                     OnOff.cluster_id,
