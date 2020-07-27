@@ -28,6 +28,12 @@ cards:
           - entity: group.bedside_lights
             state_color: true
       - type: entities
+        title: Office
+        entities:
+          - entity: light.office_lamp
+            secondary_info: brightness
+            state_color: true
+      - type: entities
         title: Nursery
         entities:
           - entity: light.rocker_lamp
@@ -54,6 +60,8 @@ cards:
     cards: 
       - type: thermostat
         entity: climate.entryway_thermostat
+      - type: thermostat
+        entity: climate.garage
   - type: vertical-stack
     title: 🔔 Security
     cards:
@@ -67,7 +75,7 @@ cards:
     title: 🌡 Temperature
     cards:
       - type: history-graph
-        hours_to_show: 12
+        hours_to_show: 36
         refresh_interval: 10
         title: Temperature over time
         entities:
@@ -79,7 +87,7 @@ cards:
             name: Bedroom
           - entity: sensor.nursery_temperature
             name: Nursery
-          - entity: sensor.office_door_temperature
+          - entity: sensor.desk_temperature
             name: Office
           - entity: sensor.garage_motion_temperature
             name: Garage
