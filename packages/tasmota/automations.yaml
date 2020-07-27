@@ -49,7 +49,7 @@
 - id: tasmotabridge_result
   alias: Parse Tasmota result
   trigger: 
-    - platform: matt
+    - platform: mqtt
       topic: stat/+/RESULT
   action:
     - service: mqtt.publish
