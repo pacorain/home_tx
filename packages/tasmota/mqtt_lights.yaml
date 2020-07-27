@@ -11,5 +11,4 @@
   white_value: true
   rgb: true
   retain: true
-  optimistic: true # TODO: Remove. I'm just figuring it out right now.
 

@@ -1,0 +1,94 @@
+- id: tasmotabridge_out
+  alias: Control Tasmota state
+  trigger:
+    - platform: mqtt
+      topic: tasmotabridge/+/set
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          cmnd/{{ device }}/backlog
+        payload: >-
+          {% set payload = trigger['payload_json'] -%}
+          {% if "transition" in payload -%}
+            {% if payload.transition < 0.5 -%}
+                fade 0; 
+            {%- else -%}
+              fade 1;speed {{ 
+                [
+                  (payload.transition * 2) | int, 
+                  40
+                ] | min 
+              }}; 
+            {%- endif -%}
+          {% else -%}
+            fade 1; speed 1; 
+          {%- endif -%}
+          {% if "state" in payload -%}
+            POWER {{ payload.state }};
+          {%- endif -%}
+          {% if "color" in payload -%}
+            {% set command = 'Color2' if "brightness" not in payload else 'Color1' -%}
+            {% set v = (payload.brightness | default(100)) / 100 -%}
+            {{ command }} {{ '' }}
+            {{- (payload.color.r * v) | int }},
+            {{- (payload.color.g * v) | int }},
+            {{- (payload.color.b * v) | int -}}; 
+          {% elif "brightness" in payload -%}
+            Dimmer {{ payload.brightness }};
+          {%- endif -%}
+          {% if "white_value" in payload -%}
+            White {{ ( payload.white_value / 2.5 ) | int }}
+          {%- endif -%}
+          {% if "color_temp" in payload -%}
+            CT {{ payload.color_temp }};
+          {%- endif -%}
+          state;
+
+- id: tasmotabridge_result
+  alias: Parse Tasmota result
+  trigger: 
+    - platform: matt
+      topic: stat/+/RESULT
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          tasmotabridge/{{ device }}/state
+        payload: >-
+          {% set payload = trigger['payload_json'] -%}
+          {% if "transition" in payload -%}
+            {% if payload.transition < 0.5 -%}
+                fade 0; 
+            {%- else -%}
+              fade 1;speed {{ 
+                [
+                  (payload.transition * 2) | int, 
+                  40
+                ] | min 
+              }}; 
+            {%- endif -%}
+          {% else -%}
+            fade 1; speed 1; 
+          {%- endif -%}
+          {%- if "brightness" in payload -%}
+            Dimmer {{ payload.brightness }};
+          {%- endif -%}
+          {% if "state" in payload -%}
+            POWER {{ payload.state }};
+          {%- endif -%}
+          {% if "color" in payload -%}
+            Color2 {{ '' }}
+            {{- (payload.color.r) }},
+            {{- (payload.color.g) }},
+            {{- (payload.color.b) -}}; 
+          {%- endif -%}
+          {% if "white_value" in payload -%}
+            White {{ ( payload.white_value / 2.5 ) | int }};
+          {%- endif -%}
+          {% if "color_temp" in payload -%}
+            CT {{ payload.color_temp }};
+          {%- endif -%}
+          state;
