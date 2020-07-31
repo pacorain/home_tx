@@ -14,3 +14,16 @@
   max_mireds: 500
   retain: true
 
+- platform: mqtt
+  schema: json
+  name: Right Cloud
+  unique_id: right_cloud
+  command_topic: tasmotabridge/rightcloud/set
+  state_topic: tasmotabridge/rightcloud/state
+  brightness: true
+  brightness_scale: 100
+  rgb: true
+  color_temp: true
+  min_mireds: 153
+  max_mireds: 500
+  retain: true
