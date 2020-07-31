@@ -8,7 +8,6 @@
   state_topic: tasmotabridge/leftcloud/state
   brightness: true
   brightness_scale: 100
-  white_value: true
   rgb: true
   color_temp: true
   min_mireds: 153

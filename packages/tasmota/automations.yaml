@@ -37,9 +37,6 @@
             {{- (payload.color.g) }},
             {{- (payload.color.b) -}}; 
           {%- endif -%}
-          {% if "white_value" in payload -%}
-            White {{ ( payload.white_value / 2.5 ) | int }};
-          {%- endif -%}
           {% if "color_temp" in payload -%}
             CT {{ payload.color_temp }};
           {%- endif -%}
@@ -65,9 +62,7 @@
                 'r': trigger.payload_json.Color.split(',').0,
                 'g': trigger.payload_json.Color.split(',').1,
                 'b': trigger.payload_json.Color.split(',').2
-              } if "Color" in trigger.payload_json else None,
-              'white_value': None if "White" not in trigger.payload_json
-                else (trigger.payload_json.White * 2.5) | default(None)
+              } if "Color" in trigger.payload_json else None
             }
           -%}
 
