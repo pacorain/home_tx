@@ -22,8 +22,6 @@
                 ] | min 
               }}; 
             {%- endif -%}
-          {% else -%}
-            fade 1; speed 1; 
           {%- endif -%}
           {%- if "brightness" in payload -%}
             Dimmer {{ payload.brightness }};
