@@ -10,6 +10,7 @@
   brightness_scale: 100
   white_value: true
   rgb: true
+  color_temp: true
   min_mireds: 153
   max_mireds: 500
   retain: true
