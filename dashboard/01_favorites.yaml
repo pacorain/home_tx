@@ -44,7 +44,8 @@ cards:
           - entity: light.right_cloud
             secondary_info: brightness
             icon: mdi:cloud-outline
-          - entity: group.clouds
+          - entity: light.cloud_group
+            icon: mdi:weather-night-partly-cloudy
       - type: entities
         title: Loft
         entities:

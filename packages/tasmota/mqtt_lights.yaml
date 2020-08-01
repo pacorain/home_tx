@@ -27,3 +27,16 @@
   min_mireds: 153
   max_mireds: 500
   retain: true
+
+- platform: mqtt
+  schema: json
+  name: Cloud Lamps
+  unique_id: cloud_group
+  command_topic: tasmotabridge/clouds/set
+  # Command only--there is no state topic
+  brightness: true
+  brightness_scale: 100
+  rgb: true
+  color_temp: true
+  min_mireds: 153
+  max_mireds: 500
