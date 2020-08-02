@@ -162,9 +162,9 @@ class HaloWx(CustomDevice):
             },
             ENDPOINT_HALO: {
                 INPUT_CLUSTERS: [
-                    HaloGeneral,
+                    Halo,
                     HaloControl,
-                    HaloMspSensors
+                    HaloSensors
                 ]
             },
             5: {
