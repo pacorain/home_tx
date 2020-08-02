@@ -1,0 +1,8 @@
+{
+    "domain": "tasmota",
+    "name": "Tasmota Light",
+    "documentation": "",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": []
+  }
