@@ -8,8 +8,41 @@
   state_topic: tasmotabridge/leftcloud/state
   brightness: true
   brightness_scale: 100
-  white_value: true
   rgb: true
+  color_temp: true
+  min_mireds: 153
+  max_mireds: 500
+  effect: true
+  effect_list: 
+    - rainbow1
   retain: true
-  optimistic: true # TODO: Remove. I'm just figuring it out right now.
 
+- platform: mqtt
+  schema: json
+  name: Right Cloud
+  unique_id: right_cloud
+  command_topic: tasmotabridge/rightcloud/set
+  state_topic: tasmotabridge/rightcloud/state
+  brightness: true
+  brightness_scale: 100
+  rgb: true
+  color_temp: true
+  min_mireds: 153
+  max_mireds: 500
+  effect: true
+  effect_list: 
+    - rainbow1
+  retain: true
+
+- platform: mqtt
+  schema: json
+  name: Cloud Lamps
+  unique_id: cloud_group
+  command_topic: tasmotabridge/clouds/set
+  # Command only--there is no state topic
+  brightness: true
+  brightness_scale: 100
+  rgb: true
+  color_temp: true
+  min_mireds: 153
+  max_mireds: 500

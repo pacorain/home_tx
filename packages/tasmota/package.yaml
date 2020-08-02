@@ -3,3 +3,4 @@
 # See README.md
 
 light: !include mqtt_lights.yaml
+automation: !include automations.yaml

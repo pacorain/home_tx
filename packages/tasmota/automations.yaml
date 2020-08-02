@@ -1,0 +1,122 @@
+- id: tasmotabridge_out
+  alias: Control Tasmota state
+  trigger:
+    - platform: mqtt
+      topic: tasmotabridge/+/set
+  condition: 
+    - condition: template
+      value_template: "{{ 'effect' not in trigger.payload_json }}"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          cmnd/{{ device }}/backlog
+        payload: >-
+          {% set payload = trigger['payload_json'] -%}
+          {% if "transition" in payload -%}
+            {% if payload.transition < 0.5 -%}
+                fade 0; 
+            {%- else -%}
+              fade 1;speed {{ 
+                [
+                  (payload.transition * 2) | int, 
+                  40
+                ] | min 
+              }}; 
+            {%- endif -%}
+          {% else %}
+            fade 1;speed 1;
+          {%- endif -%}
+          {%- if "brightness" in payload -%}
+            Dimmer {{ payload.brightness }};
+          {%- endif -%}
+          {% if "state" in payload -%}
+            POWER {{ payload.state }};
+          {%- endif -%}
+          {% if "color" in payload -%}
+            Color2 {{ '' }}
+            {{- (payload.color.r) }},
+            {{- (payload.color.g) }},
+            {{- (payload.color.b) -}}; 
+          {%- endif -%}
+          {% if "color_temp" in payload -%}
+            CT {{ payload.color_temp }};
+          {%- endif -%}
+          state;
+
+- id: tasmotabridge_effect_single
+  trigger: 
+    - platform: mqtt
+      topic: tasmotabridge/+/set
+  condition:
+    - condition: template
+      value_template: "{{ trigger.payload_json['effect'] == 'rainbow1' }}"
+  action:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: '{{"brightness" in trigger.payload_json}}'
+          sequence:
+            - service: mqtt.publish
+              data_template:
+                topic: >-
+                  {% set device=trigger.topic.split('/')[1] -%}
+                  cmnd/{{ device }}/dimmer
+                payload: '{{ trigger.payload_json.brightness }}'
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          cmnd/{{ device }}/palette
+        payload: 94DAFF0000 FFB62E0000 D52EFF0000
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          cmnd/{{ device }}/fade
+        payload: 1
+    - service: mqtt.publish
+      data_template:
+        topic: >- 
+          {% set device=trigger.topic.split('/')[1] -%}
+          cmnd/{{ device }}/speed
+        payload: 10
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          cmnd/{{ device }}/scheme
+        payload: 2
+  
+
+- id: tasmotabridge_result
+  alias: Parse Tasmota result
+  trigger: 
+    - platform: mqtt
+      topic: stat/+/RESULT
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: >-
+          {% set device=trigger.topic.split('/')[1] -%}
+          tasmotabridge/{{ device }}/state
+        payload: >-
+          {% set payload = {
+              'state': trigger.payload_json.POWER | default(None),
+              'brightness': trigger.payload_json.Dimmer | default(None),
+              'color_temp': trigger.payload_json.CT | default(None),
+              'color': {
+                'r': trigger.payload_json.Color.split(',').0,
+                'g': trigger.payload_json.Color.split(',').1,
+                'b': trigger.payload_json.Color.split(',').2
+              } if "Color" in trigger.payload_json else None
+            }
+          -%}
+
+          {{ dict(
+              payload.items() 
+                | rejectattr(1, 'equalto', None) 
+                | list
+            ) | to_json }}
+          
