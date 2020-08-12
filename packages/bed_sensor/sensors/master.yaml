@@ -1,0 +1,14 @@
+# Master bedroom
+
+- platform: mqtt
+  name: "Master Bed Weight"
+  unit_of_measurement: "lbs"
+  state_topic: bedsensor/master/measurement
+  availability_topic: bedsensor/master/available
+
+- platform: mqtt
+  name: "Master Bed Raw Weight"
+  state_topic: bedsensor/master/raw
+  availability_topic: bedsensor/master/available
+
+  
