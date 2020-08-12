@@ -1,0 +1,3 @@
+customize_glob:
+  "binary_sensor.*_co":
+    device_class: gas
