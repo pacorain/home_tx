@@ -1,4 +1,4 @@
 armed_away_sensors:
   entities:
-    - group.downstairs_doors
-    # TODO: Add more
+    - group.all_doors
+    - group.pet_free_motion

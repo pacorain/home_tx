@@ -6,12 +6,13 @@ upstairs_doors:
     - binary_sensor.bedroom_door
     - binary_sensor.nursery_door
     - binary_sensor.office_door
+    - binary_sensor.baby_gate
 
 downstairs_doors:
   name: Downstairs doors
   entities:
-    - binary_sensor.back_door_contact
-    - binary_sensor.garage_door_contact
+    - binary_sensor.back_door
+    - cover.garage_door
     - binary_sensor.front_garage_door
 
 # For now, the doors to access our house happen to be all of the tracked
@@ -19,9 +20,9 @@ downstairs_doors:
 access_doors:
   name: Entry/Exit Doors
   entities: 
-    - binary_sensor.back_door_contact
-    - binary_sensor.garage_door_contact
-    - binary_sensor.back_door_contact
+    - binary_sensor.back_door
+    - cover.garage_door
+    - binary_sensor.front_garage_door
 
 all_doors:
   name: All doors
@@ -29,6 +30,7 @@ all_doors:
     - binary_sensor.bedroom_door
     - binary_sensor.nursery_door
     - binary_sensor.office_door 
-    - binary_sensor.back_door_contact
-    - binary_sensor.garage_door_contact
-    - binary_sensor.back_door_contact
+    - binary_sensor.back_door
+    - cover.garage_door
+    - binary_sensor.back_door
+    - binary_sensor.baby_gate
