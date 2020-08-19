@@ -10,4 +10,5 @@
 legacy: !include_dir_merge_named ../integrations/
 
 network: !include network/package.yaml
+security: !include security/package.yaml
 tasmota: !include tasmota/package.yaml

@@ -1,0 +1,21 @@
+# Security System
+#
+# First we'll define the alarm control panel itself
+
+alarm_control_panel: !include alarm.yaml
+
+# The automations are the "logic" of the security system.
+automation: !include_dir_merge_list automations
+
+# Groups - Define which devices trigger which alarms
+group: !include_dir_merge_named groups
+
+# Sensors
+# I have special sensors set up that monitor all of the devices in a security group at once. This
+# allows me to, for example, tell which device tripped the alarm.
+sensor: !include_dir_merge_list sensors
+
+# Aarlo
+# Uses the custom component Aarlo to sync the alarm state with my Arlo hub. I think I want to 
+# eventually replace these cameras.
+alarm_control_panel aarlo: !include aarlo.yaml

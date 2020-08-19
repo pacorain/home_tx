@@ -1,6 +1,8 @@
 # Arlo alarm control
 #
-# This allows me to control whether or not my Arlo cameras record
+# This allows me to control whether or not my Arlo cameras record when motion is detected
+#
+# It also syncs with the security alarm
 
 - platform: aarlo
   away_mode_name: Armed

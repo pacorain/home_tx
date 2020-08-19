@@ -1,6 +1,4 @@
-# Manual Alarm control--Home Assistant has everything needed to trigger an alarm
-#
-# https://www.home-assistant.io/integrations/manual/
+# This file defines the options for the manual alarm control panel
 
 - platform: manual
   name: Home Alarm

@@ -2,6 +2,8 @@
 # 
 # I want to use manual alarm controls, but also want them to update Arlo, so this automation will
 # keep them in sync when I change the manual home alarm.
+#
+# Doing it this way means I'm not relying on Arlo's cloud services to manage the state of my alarm.
 
 - id: sync_alarm_states_disarmed
   alias: Alarm Syncing - Disarm
