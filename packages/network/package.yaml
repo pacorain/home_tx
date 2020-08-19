@@ -1,0 +1,4 @@
+# Various network integrations
+
+# Track download, upload, ping over time
+speedtestdotnet: !include speedtestdotnet.yaml

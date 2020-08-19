@@ -1,0 +1,14 @@
+# Speedtest.net
+#
+# When a scan is run, it grabs my ping, download speed, and upload speed for my internet 
+# connection. One caveat to be aware of is that this will be run from my Home Assistant server.
+# which is currently:
+#
+# HassOS on RPi4 -> TPLink 16-Port Gigabit Switch -> Amplifi Router -> DOCSIS 3.0 Modem
+#
+# Each of these nodes can have limitations that affect my internet speed.
+#
+# https://www.home-assistant.io/integrations/speedtestdotnet/
+
+scan_interval:
+  hours: 2

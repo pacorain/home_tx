@@ -8,4 +8,6 @@
 
 # Legacy package keeps old organization method functioning for while
 legacy: !include_dir_merge_named ../integrations/
+
+network: !include network/package.yaml
 tasmota: !include tasmota/package.yaml
