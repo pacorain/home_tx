@@ -1,0 +1,13 @@
+# HTML 5 notifications
+#
+# I've started using Brave, which allows me to use Home Assistant as if it's an "app". This will
+# also send notifications from the app.
+#
+# https://www.home-assistant.io/integrations/html5
+
+notify: 
+  - platform: html5
+    name: Browser Notifications
+    vapid_pub_key: !secret vapid_pub_key
+    vapid_prv_key: !secret vapid_prv_key
+    vapid_email: !secret vapid_email
