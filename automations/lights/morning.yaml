@@ -1,0 +1,51 @@
+- id: morning_lights
+  alias: Morning Lights
+  description: Fade the lights on in the morning
+  trigger:
+    - platform: time
+      at: "06:15"
+  condition:
+    condition: time
+    weekday:
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.austin_bedside
+        brightness: 1
+        rgb_color: 
+          - 255
+          - 0
+          - 0
+        transition: 0
+    - delay:
+        seconds: 5
+    - service: light.turn_on
+      data:
+        entity_id: light.austin_bedside
+        brightness: 64
+        rgb_color: 
+          - 255
+          - 127
+          - 0
+        transition: 180
+    - delay:
+        seconds: 180
+    - service: light.turn_on
+      data: 
+        entity_id: light.austin_bedside
+        brightness: 69
+        color_temp: 666
+        transition: 0
+    - delay:
+        seconds: 5
+    - service: light.turn_on
+      data: 
+        entity_id: light.austin_bedside
+        brightness: 255
+        color_temp: 350
+        transition: 420
