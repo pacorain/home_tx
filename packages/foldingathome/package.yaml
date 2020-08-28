@@ -1,0 +1,14 @@
+# Helps control Folding@Home on my gaming computer
+
+switch:
+  - platform: telnet
+    switches:
+      folding_at_home:
+        resource: !secret gaming_ip
+        port: !secret folding_at_home_port
+        command_on: "unpause"
+        command_off: "pause"
+        command_state: "slot-info"
+        value_template: "{{ 'RUNNING' in value }}"
+        name: Folding@Home
+        timeout: 1
