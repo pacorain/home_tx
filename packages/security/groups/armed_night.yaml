@@ -4,6 +4,6 @@ armed_night_sensors:
     - group.downstairs_doors
     - group.bedtime_motion
     - group.all_windows
-    - binary_sensor.nursery_door
     - binary_sensor.office_door
+    - binary_sensor.baby_gate
     # The bedroom door acts as a "bypass" for the alarm, so don't trigger when it's opened.

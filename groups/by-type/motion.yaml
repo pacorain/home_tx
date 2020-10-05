@@ -11,10 +11,8 @@ bedtime_motion: # Motion sensors that should *not* trigger during bedtime
   name: Bedtime Motion
   entities:
     - binary_sensor.living_room_motion
-    - binary_sensor.nursery_motion
     - binary_sensor.office_motion
     - binary_sensor.garage_motion
-    - binary_sensor.loft_motion
 
 indoor_motion:
   name: Indoor motion detection
