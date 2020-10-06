@@ -7,7 +7,7 @@
     - platform: homeassistant
       event: start
   action:
-    - service: notify.mobile_app_austins_iphone
+    - service: notify.austin
       data:
         title: Home Assistant
         message: Home Assistant has started
@@ -17,7 +17,7 @@
     - platform: homeassistant
       event: shutdown
   action:
-    - service: notify.mobile_app_austins_iphone
+    - service: notify.austin
       data: 
         title: Home Assistant
         message: Home Assistant is shutting down

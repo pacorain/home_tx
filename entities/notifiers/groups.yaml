@@ -11,3 +11,9 @@
   services:
     - service: mobile_app_austins_iphone
     - service: mobile_app_rachaels_iphone
+
+- platform: group
+  name: austin
+  services: 
+    - service: mobile_app_amethyst
+    - service: mobile_app_austins_iphone
