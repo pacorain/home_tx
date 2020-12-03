@@ -22,6 +22,7 @@ homekit:
       - binary_sensor.aarlo_motion_*
       - binary_sensor.*_door
       - binary_sensor.*_windows
+      - binary_sensor.*_gate
     include_entities:
       - alarm_control_panel.home_alarm
       - camera.nursery_cam

@@ -1,0 +1,4 @@
+apcupsd:
+  host: a722577e-apcupsd
+  
+sensor: !include sensor.yaml

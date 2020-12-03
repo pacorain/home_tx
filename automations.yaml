@@ -142,3 +142,47 @@
   - data: {}
     entity_id: input_number.tasks_worked
     service: input_number.increment
+- id: '1600062360773'
+  alias: 'Nursery Button: Nighttime Lights'
+  description: ''
+  trigger:
+  - device_id: 607c91e7bfcb431eb004f7f9b9f44447
+    domain: zha
+    platform: device
+    subtype: remote_button_short_press
+    type: remote_button_short_press
+  condition: []
+  action:
+  - data:
+      brightness: 180
+      rgb_color:
+      - 255
+      - 92
+      - 0
+    entity_id: light.right_cloud
+    service: light.toggle
+  - data: {}
+    entity_id: light.rocker_lamp
+    service: light.turn_off
+  mode: single
+- id: '1600062900190'
+  alias: 'Nursery Button: Lights On'
+  description: ''
+  trigger:
+  - device_id: 607c91e7bfcb431eb004f7f9b9f44447
+    domain: zha
+    platform: device
+    subtype: remote_button_long_press
+    type: remote_button_long_press
+  condition: []
+  action:
+  - data:
+      brightness: 255
+    entity_id: light.rocker_lamp
+    service: light.turn_on
+  - data:
+      brightness: 255
+      color_temp: 500
+    entity_id: light.right_cloud
+    service: light.turn_on
+  mode: single

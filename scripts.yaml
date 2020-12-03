@@ -20,3 +20,22 @@
       transition: 600
     entity_id: light.austin_bedside
     service: light.turn_on
+color_cycle:
+  alias: Color Cycle
+  mode: single
+  sequence:
+  - repeat:
+      sequence:
+      - data_template:
+          hs_color:
+          - '{{ (state_attr(''light.austin_bedside'', ''hs_color'')[0] + 20) % 255
+            }}'
+          - '{{ state_attr(''light.austin_bedside'', ''hs_color'')[1] }}'
+          transition: 5
+        entity_id: light.austin_bedside
+        service: light.turn_on
+      - delay: 00:00:05
+      until:
+      - condition: state
+        entity_id: light.austin_bedside
+        state: 'off'

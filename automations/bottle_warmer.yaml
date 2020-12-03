@@ -1,0 +1,31 @@
+- id: start_bottle_warmer_timer
+  alias: Start Bottle Warmer
+  trigger: 
+    - platform: state
+      entity_id: switch.bottle_warmer
+      to: 'on'
+  action: 
+    - service: switch.turn_on
+      entity_id: switch.bottle_warmer
+    - service: timer.start
+      entity_id: timer.bottle_warmer
+    - service: notify.notify
+      data:
+        title: Bottle Warmer
+        message: Bottle warmer turned on, will warm bottle for 5 minutes, 30 seconds
+      
+- id: bottle_warmer_timer_triggered
+  alias: Turn off bottle warmer
+  trigger: 
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.bottle_warmer
+  action:
+    - service: switch.turn_off
+      entity_id: switch.bottle_warmer
+    - service: notify.notify
+      data:
+        title: Bottle Warmer
+        message: Bottle is done, please remove from the water
+    

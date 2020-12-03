@@ -2,7 +2,7 @@ import pprint
 import time
 
 from .constant import (AUTOMATION_PATH, DEFAULT_MODES, DEFINITIONS_PATH, CONNECTION_KEY,
-                       MODE_ID_TO_NAME_KEY, MODE_KEY,
+                       MODE_ID_TO_NAME_KEY, MODE_KEY, RESTART_PATH,
                        MODE_NAME_TO_ID_KEY, MODE_IS_SCHEDULE_KEY, MODE_UPDATE_INTERVAL,
                        SCHEDULE_KEY, SIREN_STATE_KEY, TEMPERATURE_KEY, HUMIDITY_KEY, AIR_QUALITY_KEY)
 from .device import ArloDevice
@@ -216,7 +216,9 @@ class ArloBase(ArloDevice):
                                                                                             pprint.pformat(body)))
                         self._arlo.debug('Fetching device list (hoping this will fix arming/disarming)')
                         self._arlo.be.devices()
-                        self._arlo.bg.run(_set_mode_v2_cb, i=attempt + 1)
+                        self._arlo.bg.run(_set_mode_v2_cb, attempt=attempt + 1)
+                        return
+
                     self._arlo.error('Failed to set mode.')
                     self._arlo.debug('Giving up on setting mode! Session headers=\n{}'.format(
                         pprint.pformat(self._arlo.be.session.headers)))
@@ -232,9 +234,9 @@ class ArloBase(ArloDevice):
         """
         now = time.monotonic()
         with self._lock:
-            if now < self._last_update + MODE_UPDATE_INTERVAL:
-                self._arlo.debug('skipping an update')
-                return
+            #  if now < self._last_update + MODE_UPDATE_INTERVAL:
+                #  self._arlo.debug('skipping an update')
+                #  return
             self._last_update = now
         data = self._arlo.be.get(AUTOMATION_PATH)
         for mode in data:
@@ -248,8 +250,11 @@ class ArloBase(ArloDevice):
             resp = self._arlo.be.notify(base=self, body={"action": "get", "resource": "modes",
                                                          "publishResponse": False},
                                         wait_for="event")
-            props = resp.get('properties', {})
-            self._parse_modes(props.get('modes', []))
+            if resp is not None:
+                props = resp.get('properties', {})
+                self._parse_modes(props.get('modes', []))
+            else:
+                self._arlo.error("unable to read mode, try forcing v2");
         else:
             modes = self._arlo.be.get(DEFINITIONS_PATH + "?uniqueIds={}".format(self.unique_id))
             modes = modes.get(self.unique_id, {})
@@ -313,6 +318,11 @@ class ArloBase(ArloDevice):
         }
         self._arlo.debug(str(body))
         self._arlo.be.notify(base=self, body=body)
+
+    def restart(self):
+        params = {'deviceId': self.device_id }
+        if self._arlo.be.post(RESTART_PATH, params=params, wait_for=None) is None:
+            self._arlo.debug('RESTART didnt send')
 
     def _ping_and_check_reply(self):
         body = {

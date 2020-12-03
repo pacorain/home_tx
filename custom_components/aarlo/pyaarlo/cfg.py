@@ -95,6 +95,13 @@ class ArloCfg(object):
         return retries
 
     @property
+    def snapshot_checks(self):
+        checks = self._kw.get('snapshot_checks', [])
+        if not checks:
+            checks = [ 1, 5 ]
+        return checks
+
+    @property
     def user_agent(self):
         return self._kw.get('user_agent', "apple")
 
@@ -203,3 +210,7 @@ class ArloCfg(object):
     @property
     def stream_snapshot(self):
         return self._kw.get('stream_snapshot', False)
+
+    @property
+    def save_updates_to(self):
+        return self._kw.get('save_updates_to', '')

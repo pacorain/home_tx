@@ -23,7 +23,7 @@ from homeassistant.components.camera import DOMAIN as CAMERA_DOMAIN
 from homeassistant.components.alarm_control_panel import DOMAIN as ALARM_DOMAIN
 from .pyaarlo.constant import SIREN_STATE_KEY, DEFAULT_HOST, DEFAULT_AUTH_HOST
 
-__version__ = '0.7.0.beta.1'
+__version__ = '0.7.0.beta.5'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -48,6 +48,7 @@ CONF_REQ_TIMEOUT = 'request_timeout'
 CONF_STR_TIMEOUT = 'stream_timeout'
 CONF_NO_MEDIA_UP = 'no_media_upload'
 CONF_MEDIA_RETRY = 'media_retry'
+CONF_SNAPSHOT_CHECKS = 'snapshot_checks'
 CONF_USER_AGENT = 'user_agent'
 CONF_MODE_API = 'mode_api'
 CONF_DEVICE_REFRESH = 'refresh_devices_every'
@@ -67,6 +68,7 @@ CONF_LIBRARY_DAYS = 'library_days'
 CONF_AUTH_HOST = 'auth_host'
 CONF_SERIAL_IDS = 'serial_ids'
 CONF_STREAM_SNAPSHOT = 'stream_snapshot'
+CONF_SAVE_UPDATES_TO = 'save_updates_to'
 
 SCAN_INTERVAL = timedelta(seconds=60)
 PACKET_DUMP = False
@@ -80,6 +82,7 @@ REQ_TIMEOUT = timedelta(seconds=60)
 STR_TIMEOUT = timedelta(seconds=0)
 NO_MEDIA_UP = False
 MEDIA_RETRY = None
+SNAPSHOT_CHECKS = None
 USER_AGENT = 'apple'
 MODE_API = 'auto'
 DEVICE_REFRESH = 0
@@ -98,6 +101,7 @@ DEFAULT_TFA_PASSWORD = 'unknown'
 DEFAULT_LIBRARY_DAYS = 30
 SERIAL_IDS = False
 STREAM_SNAPSHOT = False
+SAVE_UPDATES_TO = ''
 
 CONFIG_SCHEMA = vol.Schema({
     COMPONENT_DOMAIN: vol.Schema({
@@ -117,6 +121,7 @@ CONFIG_SCHEMA = vol.Schema({
         vol.Optional(CONF_STR_TIMEOUT, default=STR_TIMEOUT): cv.time_period,
         vol.Optional(CONF_NO_MEDIA_UP, default=NO_MEDIA_UP): cv.boolean,
         vol.Optional(CONF_MEDIA_RETRY, default=list()): vol.All(cv.ensure_list,[cv.positive_int]),
+        vol.Optional(CONF_SNAPSHOT_CHECKS, default=list()): vol.All(cv.ensure_list,[cv.positive_int]),
         vol.Optional(CONF_USER_AGENT, default=USER_AGENT): cv.string,
         vol.Optional(CONF_MODE_API, default=MODE_API): cv.string,
         vol.Optional(CONF_DEVICE_REFRESH, default=DEVICE_REFRESH): cv.positive_int,
@@ -135,6 +140,7 @@ CONFIG_SCHEMA = vol.Schema({
         vol.Optional(CONF_LIBRARY_DAYS, default=DEFAULT_LIBRARY_DAYS): cv.positive_int,
         vol.Optional(CONF_SERIAL_IDS, default=SERIAL_IDS): cv.boolean,
         vol.Optional(CONF_STREAM_SNAPSHOT, default=STREAM_SNAPSHOT): cv.boolean,
+        vol.Optional(CONF_SAVE_UPDATES_TO, default=SAVE_UPDATES_TO): cv.string,
     }),
 }, extra=vol.ALLOW_EXTRA)
 
@@ -145,6 +151,7 @@ SERVICE_SIREN_ON = 'siren_on'
 SERVICE_SIRENS_ON = 'sirens_on'
 SERVICE_SIREN_OFF = 'siren_off'
 SERVICE_SIRENS_OFF = 'sirens_off'
+SERVICE_RESTART = 'restart_device'
 SERVICE_INJECT_RESPONSE = 'inject_response'
 SIREN_ON_SCHEMA = vol.Schema({
     vol.Required(ATTR_ENTITY_ID): cv.comp_entity_ids,
@@ -162,6 +169,9 @@ SIRENS_OFF_SCHEMA = vol.Schema({
 })
 INJECT_RESPONSE_SCHEMA = vol.Schema({
     vol.Required('filename'): cv.string,
+})
+RESTART_SCHEMA = vol.Schema({
+    vol.Required(ATTR_ENTITY_ID): cv.comp_entity_ids,
 })
 
 
@@ -185,6 +195,7 @@ def setup(hass, config):
     str_timeout = conf.get(CONF_STR_TIMEOUT).total_seconds()
     no_media_up = conf.get(CONF_NO_MEDIA_UP)
     media_retry = conf.get(CONF_MEDIA_RETRY)
+    snapshot_checks = conf.get(CONF_SNAPSHOT_CHECKS)
     user_agent = conf.get(CONF_USER_AGENT)
     mode_api = conf.get(CONF_MODE_API)
     device_refresh = conf.get(CONF_DEVICE_REFRESH)
@@ -203,6 +214,7 @@ def setup(hass, config):
     library_days = conf.get(CONF_LIBRARY_DAYS)
     serial_ids = conf.get(CONF_SERIAL_IDS)
     stream_snapshot = conf.get(CONF_STREAM_SNAPSHOT)
+    save_updates_to = conf.get(CONF_SAVE_UPDATES_TO)
 
     _LOGGER.info("retry={}".format(pprint.pformat(media_retry)))
 
@@ -230,6 +242,7 @@ def setup(hass, config):
                       recent_time=recent_time,
                       last_format=last_format,
                       no_media_upload=no_media_up, media_retry=media_retry,
+                      snapshot_checks=snapshot_checks,
                       user_agent=user_agent,
                       mode_api=mode_api,
                       refresh_devices_every=device_refresh,
@@ -242,6 +255,7 @@ def setup(hass, config):
                       library_days=library_days,
                       serial_ids=serial_ids,
                       stream_snapshot=stream_snapshot,
+                      save_updates_to=save_updates_to,
                       wait_for_initial_setup=False,
                       verbose_debug=verbose_debug)
         if not arlo.is_connected:
@@ -281,6 +295,8 @@ def setup(hass, config):
                 await async_aarlo_siren_off(hass, call)
             if call.service == SERVICE_SIRENS_OFF:
                 await async_aarlo_sirens_off(hass, call)
+        if call.service == SERVICE_RESTART:
+            await async_aarlo_restart_device(hass, call)
         if call.service == SERVICE_INJECT_RESPONSE:
             await async_aarlo_inject_response(hass, call)
 
@@ -295,6 +311,9 @@ def setup(hass, config):
     )
     hass.services.async_register(
         COMPONENT_DOMAIN, SERVICE_SIRENS_OFF, async_aarlo_service, schema=SIRENS_OFF_SCHEMA,
+    )
+    hass.services.async_register(
+        COMPONENT_DOMAIN, SERVICE_RESTART, async_aarlo_service, schema=RESTART_SCHEMA,
     )
     if injection_service:
         hass.services.async_register(
@@ -365,6 +384,16 @@ async def async_aarlo_sirens_off(hass, _call):
         if device.has_capability(SIREN_STATE_KEY):
             device.siren_off()
             _LOGGER.info("{} siren off".format(device.unique_id))
+
+
+async def async_aarlo_restart_device(hass, call):
+    for entity_id in call.data['entity_id']:
+        try:
+            device = get_entity_from_domain(hass, [ALARM_DOMAIN], entity_id)
+            device.restart()
+            _LOGGER.info("{} restarted".format(entity_id))
+        except HomeAssistantError:
+            _LOGGER.info("{} device not found".format(entity_id))
 
 
 async def async_aarlo_inject_response(hass, call):
