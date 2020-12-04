@@ -1,12 +1,1 @@
 lovelace:
-  mode: yaml
-  dashboards:
-    lovelace-generated:
-      mode: yaml
-      filename: notexist.yaml
-      # I'm still learning to create lovelace dashboards so I'm keeping the generated dashboard
-      # as a reference
-      title: Generated
-      icon: mdi:tools
-      show_in_sidebar: true
-      require_admin: true
