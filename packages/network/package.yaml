@@ -1,4 +1,7 @@
 # Various network integrations
 
+# Home Assistant HTTP configuration
+http: !include http.yaml
+
 # Track download, upload, ping over time
 speedtestdotnet: !include speedtestdotnet.yaml
