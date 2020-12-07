@@ -63,28 +63,35 @@
   alias: Austin Bedside Button
   description: ''
   trigger:
-  - entity_id: sensor.austin_bedside_button_click
-    platform: state
-    to: single
+  - platform: device
+    domain: mqtt
+    device_id: bbf16375750b41dfabff1626b5b63404
+    type: click
+    subtype: single
+    discovery_id: 0x286d9700010c0519 click_single
   condition: []
   action:
-  - device_id: 9e37e275c7ea47e391c393070ff9c17c
-    domain: light
+  - type: toggle
+    device_id: 58d467de6a5d4d82aa78bf61faf6e5e5
     entity_id: light.austin_bedside
-    type: toggle
+    domain: light
+  mode: single
 - id: '1592459512451'
   alias: Rachael Button
   description: ''
   trigger:
-  - entity_id: sensor.rachael_bedside_button_click
-    platform: state
-    to: single
+  - device_id: c700b38e68a84781932b1efe7e6384d4
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
   condition: []
   action:
   - device_id: 6d76bee1732c48f083abddcf746bffd2
     domain: light
     entity_id: light.rachael_bedside
     type: toggle
+  mode: single
 - id: '1594009139252'
   alias: Cool garage at 5 AM
   description: ''
@@ -185,4 +192,17 @@
       color_temp: 500
     entity_id: light.right_cloud
     service: light.turn_on
+  mode: single
+- id: '1607056043306'
+  alias: Tag Austin Bedside is scanned
+  description: ''
+  trigger:
+  - platform: tag
+    tag_id: austin_bedside
+  condition: []
+  action:
+  - type: toggle
+    device_id: 58d467de6a5d4d82aa78bf61faf6e5e5
+    entity_id: light.austin_bedside
+    domain: light
   mode: single
