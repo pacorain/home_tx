@@ -14,5 +14,4 @@ foldingathome: !include foldingathome/package.yaml
 #html5: !include html5/package.yaml
 network: !include network/package.yaml
 security: !include security/package.yaml
-tasmota: !include tasmota/package.yaml
 
