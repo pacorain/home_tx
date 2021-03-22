@@ -1,0 +1,15 @@
+{
+  "domain": "aioping",
+  "name": "Asynchronous Ping",
+  "requirements": [
+    "aioping==0.3.1"
+  ],
+  "documentation": "https://home-assistant.io",
+  "ssdp": [],
+  "zeroconf": [],
+  "homekit": {},
+  "dependencies": [],
+  "codeowners": [
+    "@pacorain"
+  ]
+}
