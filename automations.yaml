@@ -192,6 +192,11 @@
       color_temp: 500
     entity_id: light.right_cloud
     service: light.turn_on
+  - data:
+      brightness: 255
+      color_temp: 500
+    entity_id: light.left_cloud
+    service: light.turn_on
   mode: single
 - id: '1607056043306'
   alias: Tag Austin Bedside is scanned
@@ -205,4 +210,88 @@
     device_id: 58d467de6a5d4d82aa78bf61faf6e5e5
     entity_id: light.austin_bedside
     domain: light
+  mode: single
+- id: '1608510495349'
+  alias: Shower Mode On
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.shower_mode
+    to: 'on'
+  condition: []
+  action:
+  - service: climate.turn_on
+    data: {}
+    entity_id: climate.hvac
+  - wait_for_trigger:
+    - platform: state
+      entity_id: input_boolean.shower_mode
+      from: 'on'
+    timeout: '1200'
+    continue_on_timeout: true
+  - service: input_boolean.turn_off
+    data: {}
+    entity_id: input_boolean.shower_mode
+  - service: climate.set_fan_mode
+    data:
+      mode: 'on'
+    entity_id: climate.hvac
+  mode: single
+- id: '1610137913824'
+  alias: Shower fan
+  description: Turn on the fan for an hour
+  trigger:
+  - platform: tag
+    tag_id: a54ea0fc-4962-4a85-80b9-918177f0c39e
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: climate.hvac
+      attribute: fan_modes
+      state: On Low
+  action:
+  - service: climate.set_fan_mode
+    data:
+      fan_mode: On Low
+    entity_id: climate.hvac
+  - delay: '3600'
+  - service: climate.set_fan_mode
+    data:
+      fan_mode: Auto Low
+    entity_id: climate.hvac
+  mode: restart
+- id: '1610296342550'
+  alias: Turn up the heat when leaving Aldi
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: person.austin_rainwater
+    zone: zone.aldi
+    event: leave
+  condition: []
+  action:
+  - service: climate.set_temperature
+    data:
+      temperature: 71
+      hvac_mode: heat
+    entity_id: climate.hvac
+  mode: single
+- id: '1612448662021'
+  alias: Window Open - Heating Up
+  description: Notify when the temperature starts to raise and a window is ipen
+  trigger:
+  - platform: numeric_state
+    entity_id: weather.home
+    attribute: temperature
+    above: '71'
+    for: 0:20:00
+  condition:
+  - condition: state
+    entity_id: group.all_windows
+    state: 'on'
+  action:
+  - service: notify.notify
+    data:
+      message: It's starting to heat up!  You may want to close the windows.
   mode: single

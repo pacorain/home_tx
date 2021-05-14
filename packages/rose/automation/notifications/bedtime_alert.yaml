@@ -1,0 +1,25 @@
+# Displays a notification when it's almost Rose's bedtime!
+#
+# This will also provide actions to help wind down.
+
+trigger:
+  - platform: time
+    at: input_datetime.rose_bedtime_alert
+    
+condition:
+  - condition: state
+    entity_id: input_boolean.nursery_sleep_mode
+    state: 'off'
+
+action:
+  - service: notify.everyone_ios
+    data:
+      title: It's time for bed, Rose!
+      message: Long press this message to start getting Rose ready for bed.
+      url: /lovelace-rooms/nursery
+      data:
+        push:
+          sound: 'GoToSleep_Haptic.caf'
+          category: 'ROSE_BEDTIME'
+        apns_headers:
+          apns-collapse-id: 'rose-bedtime'

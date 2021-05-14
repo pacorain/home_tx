@@ -5,3 +5,9 @@ http: !include http.yaml
 
 # Track download, upload, ping over time
 speedtestdotnet: !include speedtestdotnet.yaml
+
+# Keep an eye on my network ping stats
+sensor ping: !include aioping.yaml
+
+script: !include_dir_named scripts
+automation: !include automations.yaml

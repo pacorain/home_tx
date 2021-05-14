@@ -1,0 +1,27 @@
+# Reset the modem, because Spectrum keeps trying to blame our own stuff
+
+alias: Reset the modem
+sequence:
+  - choose:
+    - alias: "Turn off the modem if it is on"
+      conditions:
+        - condition: state
+          entity_id: switch.modem
+          state: 'on'
+      sequence:
+        # TODO: Notify everyone that the internet is about to go out
+        # TODO: Pause all media players
+        - service: switch.turn_off
+          target: 
+            entity_id: switch.modem
+
+  - alias: Make sure the modem is off for at least 0.5 seconds
+    delay: 0.5
+
+  - alias: Turn the modem back on
+    service: switch.turn_on
+    target:
+      entity_id: switch.modem
+
+        
+   

@@ -1,0 +1,28 @@
+rose_bedtime_routine:
+  alias: Start Rose bedtime routine
+  sequence:
+    - service: logbook.log
+      data:
+        name: Rose
+        message: is getting ready for bed
+        entity: person.rose_rainwater
+        domain: person
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.nursery_dot
+        media_content_id: "good night rose playlist"
+        media_content_type: "AMAZON_MUSIC"
+    - service: light.turn_on
+      data:
+        entity_id: light.rocker_lamp
+        brightness: 255
+    - delay: 5
+    - service: light.turn_off
+      data:
+        entity_id: light.rocker_lamp
+        transition: 60
+    - delay: 
+        minutes: 5
+    - service: switch.turn_on
+      data:
+        entity_id: switch.nursery_humidifier

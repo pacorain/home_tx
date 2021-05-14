@@ -1,0 +1,11 @@
+automation: !include_dir_list automation
+script: !include_dir_merge_named scripts
+
+# "Settings" for this package
+input_datetime: !include input_datetime.yaml
+input_boolean: !include input_boolean.yaml
+
+# Notification categories, allowing actions to be taken on iOS
+ios:
+  push:
+    categories: !include_dir_list notification_categories

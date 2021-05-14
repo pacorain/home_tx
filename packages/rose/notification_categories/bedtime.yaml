@@ -1,0 +1,7 @@
+name: Rose's bedtime
+identifier: 'ROSE_BEDTIME'
+actions:
+  - identifier: 'START_ROSE_BEDTIME_ROUTINE'
+    title: 'Start Bedtime Routine'
+  - identifier: 'SET_NURSERY_SLEEP_ON'
+    title: 'Rose is asleep'

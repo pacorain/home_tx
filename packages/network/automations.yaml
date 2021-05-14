@@ -1,0 +1,8 @@
+- id: reset_modem_on_off
+  alias: Reset the modem when switched off
+  trigger: 
+    - platform: state
+      entity_id: switch.modem
+      to: 'off'
+  action:
+    service: script.reset_modem

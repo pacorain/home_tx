@@ -39,3 +39,69 @@ color_cycle:
       - condition: state
         entity_id: light.austin_bedside
         state: 'off'
+good_night_rose:
+  alias: Good Night Rose
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: light.rocker_lamp
+        state: 'on'
+      sequence:
+      - service: light.turn_off
+        data: {}
+        entity_id: light.rocker_lamp
+    default: []
+  mode: single
+night_lifhts:
+  alias: night lifhts
+  sequence:
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 255
+      - 127
+      - 0
+      transition: 300
+      brightness: 192
+    entity_id: light.right_cloud
+  - delay: '45'
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 255
+      - 64
+      - 127
+      transition: 300
+      brightness: 192
+    entity_id: light.left_cloud
+  - delay: '215'
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      brightness: 92
+      transition: 180
+    entity_id: light.right_cloud
+  - delay: '45'
+  - service: light.turn_on
+    data:
+      rgb_color:
+      - 64
+      - 0
+      - 255
+      brightness: 92
+      transition: 120
+    entity_id: light.left_cloud
+  - delay: '45'
+  - service: light.turn_off
+    data:
+      transition: 120
+    entity_id: light.right_cloud
+  - service: light.turn_off
+    data:
+      transition: 90
+    entity_id: light.left_cloud
+  mode: single

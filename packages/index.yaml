@@ -12,6 +12,10 @@ legacy: !include_dir_merge_named ../integrations/
 apcups: !include apcups/package.yaml
 foldingathome: !include foldingathome/package.yaml
 #html5: !include html5/package.yaml
+influxdb: !include influxdb/package.yaml
+logging: !include logging/package.yaml
 network: !include network/package.yaml
+rose: !include rose/package.yaml
+#routines: !include routines/packages.yaml
 security: !include security/package.yaml
 

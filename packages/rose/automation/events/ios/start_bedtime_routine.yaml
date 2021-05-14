@@ -1,0 +1,15 @@
+# Automation that starts the bedtime routine
+
+trigger:
+  - platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: START_ROSE_BEDTIME_ROUTINE
+  
+condition:
+  - condition: state
+    entity_id: input_boolean.nursery_sleep_mode
+    state: 'off'
+
+action:
+  - service: script.rose_bedtime_routine

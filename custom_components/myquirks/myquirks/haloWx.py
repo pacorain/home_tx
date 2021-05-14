@@ -19,7 +19,11 @@ from ..const import (
     OUTPUT_CLUSTERS
 )
 
+ENDPOINT_BASIC = 1
+ENDPOINT_LIGHT = 2
+ENDPOINT_CO = 3
 ENDPOINT_HALO = 4
+ENDPOINT_WEATHER = 5
 
 CLUSTER_HALO = 0xFD00
 ATTR_DEVICE_STATUS = 0x0000
@@ -51,6 +55,9 @@ ATTR_WEATHER_STATION_RSSI5 = 0x000b
 ATTR_WEATHER_STATION_RSSI6 = 0x000c
 ATTR_WEATHER_STATION_RSSI7 = 0x000d
 
+class HaloColor(Color):
+    pass
+
 class Halo(CustomCluster):
     cluster_id = CLUSTER_HALO
     ep_attribute = "halo"
@@ -77,7 +84,7 @@ class HaloWx(CustomDevice):
     signature = {
         MODELS_INFO: [("HaloSmartLabs", "haloWX")],
         ENDPOINTS: {
-            1: {
+            ENDPOINT_BASIC: {
                 PROFILE_ID: zha.PROFILE_ID,
                 DEVICE_TYPE: zha.DeviceType.LEVEL_CONTROLLABLE_OUTPUT,
                 INPUT_CLUSTERS: [
@@ -94,17 +101,17 @@ class HaloWx(CustomDevice):
                     Ota.cluster_id
                 ]
             },
-            2: {
+            ENDPOINT_LIGHT: {
                 PROFILE_ID: zha.PROFILE_ID,
                 DEVICE_TYPE: zha.DeviceType.IAS_WARNING_DEVICE,
                 INPUT_CLUSTERS: [
                     Identify.cluster_id,
                     OnOff.cluster_id,
                     LevelControl.cluster_id,
-                    Color.cluster_id
+                    HaloColor.cluster_id
                 ]
             },
-            3: {
+            ENDPOINT_CO: {
                 PROFILE_ID: zha.PROFILE_ID,
                 DEVICE_TYPE: zha.DeviceType.IAS_ZONE,
                 INPUT_CLUSTERS:[
@@ -120,7 +127,7 @@ class HaloWx(CustomDevice):
                     HaloSensors.cluster_id
                 ]
             },
-            5: {
+            ENDPOINT_WEATHER: {
                 PROFILE_ID: zha.PROFILE_ID,
                 INPUT_CLUSTERS: [
                     WeatherRadio.cluster_id
@@ -131,7 +138,7 @@ class HaloWx(CustomDevice):
 
     replacement = {
         ENDPOINTS: {
-            1: {
+            ENDPOINT_BASIC: {
                 INPUT_CLUSTERS: [
                     Basic.cluster_id,
                     PowerConfiguration.cluster_id,
@@ -146,16 +153,16 @@ class HaloWx(CustomDevice):
                     Ota.cluster_id
                 ]
             },
-            2: {
+            ENDPOINT_LIGHT: {
                 DEVICE_TYPE: zha.DeviceType.COLOR_DIMMABLE_LIGHT,
                 INPUT_CLUSTERS: [
                     Identify.cluster_id,
                     OnOff.cluster_id,
                     LevelControl.cluster_id,
-                    Color.cluster_id
+                    HaloColor
                 ]
             },
-            3: {
+            ENDPOINT_CO: {
                 INPUT_CLUSTERS:[
                     Identify.cluster_id,
                     IasZone.cluster_id
@@ -168,7 +175,7 @@ class HaloWx(CustomDevice):
                     HaloSensors
                 ]
             },
-            5: {
+            ENDPOINT_WEATHER: {
                 INPUT_CLUSTERS: [
                     WeatherRadio
                 ]

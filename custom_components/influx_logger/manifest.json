@@ -1,0 +1,12 @@
+{
+    "domain": "influx_logger",
+    "name": "Influx Logger",
+    "config_flow": false,
+    "requirements": [
+      "influxdb_client"
+    ],
+    "codeowners": [
+        "@pacorain"
+    ]
+  }
+  

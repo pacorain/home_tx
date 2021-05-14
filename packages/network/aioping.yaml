@@ -1,0 +1,15 @@
+- platform: aioping
+  name: Router
+  host: !secret local_gateway_ip
+
+- platform: aioping
+  name: Modem
+  host: 192.168.100.1
+
+- platform: aioping
+  name: Spectrum Gateway
+  host: !secret spectrum_gateway_ip
+
+- platform: aioping
+  name: one.one.one.one
+  host: 1.1.1.1

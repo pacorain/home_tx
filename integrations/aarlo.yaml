@@ -6,6 +6,7 @@
 # Integration:
 # https://github.com/twrecked/hass-aarlo
 
-aarlo:
-  username: !secret arlo_username
-  password: !secret arlo_password
+# Disabled for the time being because it's making Home Assistant unrunnable
+#aarlo:
+#  username: !secret arlo_username
+#  password: !secret arlo_password

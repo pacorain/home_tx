@@ -1,0 +1,3 @@
+influx_logger:
+  username: hass
+  password: !secret influx_password

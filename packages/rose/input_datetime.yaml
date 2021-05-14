@@ -1,0 +1,9 @@
+rose_bedtime_warning:
+    name: First warning for Rose's bedtime
+    has_time: true
+    icon: mdi:weather-sunset
+    
+rose_bedtime_alert:
+    name: Alert for Rose's bedtime
+    has_time: true
+    icon: mdi:bed-single

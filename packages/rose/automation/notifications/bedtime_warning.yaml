@@ -1,0 +1,26 @@
+# Displays a notification to warn that Rose's bedtime is coming up
+#
+# Now is the time for snacks, brushing teeth, etc.
+
+trigger: 
+  - platform: time
+    at: input_datetime.rose_bedtime_warning
+
+
+
+action:
+  - service: notify.everyone_ios
+    data_template:
+      title: It's almost Rose's bedtime!
+      message: >
+        Make sure you have plenty of time to get Rose ready for bed. 
+        It's currently {{ 
+          state_attr('weather.home', 'temperature')  
+        }}º, and the low will be {{
+          state_attr('weather.home', 'forecast')[0].templow
+        }}º.
+      url: /lovelace-rooms/nursery
+      data:
+        apns_headers:
+          apns-collapse-id: 'rose-bedtime'
+        

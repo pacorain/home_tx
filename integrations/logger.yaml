@@ -5,5 +5,8 @@
 logger:
   default: info
   logs:
-    homeassistant.components.zha: debug
-    zigpy.quirks: debug
+    # homeassistant.components.zha: debug
+    # zigpy.quirks: debug
+    custom_components.aioping: debug
+    custom_components.influx_logger: debug
+    aioping: debug
