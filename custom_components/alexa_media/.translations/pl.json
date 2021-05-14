@@ -105,6 +105,7 @@
     "step": {
       "init": {
         "data": {
+          "extended_entity_discovery": "Uwzględnij urządzenia podłączone przez Echo",
           "queue_delay": "Sekundy oczekiwania na kolejkowanie poleceń"
         }
       }

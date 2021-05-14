@@ -96,7 +96,7 @@
           "securitycode": "2FA-kode (anbefales for å unngå påloggingsproblemer)",
           "url": "Amazon-regiondomenet (f.eks. Amazon.co.uk)"
         },
-        "description": "Vennligst skriv inn informasjonen din.  \n**WARNING: Amazon rapporterer feilaktig 'Angi en gyldig e-postadresse eller et mobilnummer' når 2FA-kode kreves.**  \n>{message}",
+        "description": "Bekreft informasjonen nedenfor. For eldre konfigurasjon, deaktiver alternativet \"Bruk innlogging proxy-metode\".",
         "title": "Alexa Media Player - Konfigurasjon"
       }
     }
@@ -105,6 +105,7 @@
     "step": {
       "init": {
         "data": {
+          "extended_entity_discovery": "Inkluder enheter som er koblet til via Echo",
           "queue_delay": "Sekunder for å vente på køkommandoer sammen"
         }
       }

@@ -96,7 +96,7 @@
           "securitycode": "2FA Code (recommended to avoid login issues)",
           "url": "Amazon region domain (e.g., amazon.co.uk)"
         },
-        "description": "请输入您的信息。",
+        "description": "请确认以下信息。对于旧版配置，请禁用“使用登录代理方法”选项。",
         "title": "Alexa Media Player-配置"
       }
     }
@@ -105,6 +105,7 @@
     "step": {
       "init": {
         "data": {
+          "extended_entity_discovery": "Include devices connected via Echo",
           "queue_delay": "Seconds to wait to queue commands together"
         }
       }

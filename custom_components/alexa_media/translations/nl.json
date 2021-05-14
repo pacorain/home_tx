@@ -105,6 +105,7 @@
     "step": {
       "init": {
         "data": {
+          "extended_entity_discovery": "Inclusief apparaten die zijn verbonden via Echo",
           "queue_delay": "Seconden om te wachten om opdrachten in de wachtrij te plaatsen"
         }
       }

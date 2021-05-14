@@ -105,6 +105,7 @@
     "step": {
       "init": {
         "data": {
+          "extended_entity_discovery": "Schließen Sie Geräte ein, die über Echo verbunden sind",
           "queue_delay": "Sekunden zu warten, um Befehle in die Warteschlange zu stellen"
         }
       }

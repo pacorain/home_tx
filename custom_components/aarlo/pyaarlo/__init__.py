@@ -18,6 +18,7 @@ from .constant import (
     INITIAL_REFRESH_DELAY,
     MEDIA_LIBRARY_DELAY,
     MODEL_ESSENTIAL,
+    MODEL_ESSENTIAL_INDOOR,
     MODEL_PRO_3_FLOODLIGHT,
     MODEL_PRO_4,
     MODEL_WIRED_VIDEO_DOORBELL,
@@ -37,7 +38,7 @@ from .util import time_to_arlotime
 
 _LOGGER = logging.getLogger("pyaarlo")
 
-__version__ = "0.7.0.6"
+__version__ = "0.7.1b14"
 
 
 class PyArlo(object):
@@ -70,6 +71,7 @@ class PyArlo(object):
       ISP forced a new IP on you.
     * **synchronous_mode** - Wait for operations to complete before returing. If you are coming from Pyarlo this
       will make Pyaarlo behave more like you expect.
+    * **save_media_to** - Save media to a local directory.
 
     **Debug `kwargs` parameters:**
 
@@ -111,7 +113,7 @@ class PyArlo(object):
     * **no_media_upload** - Force a media upload after camera activity.
       Normally not needed but some systems fail to push media uploads. Default 'False'.
     * **user_agent** - Set what 'user-agent' string is passed in request headers. It affects what video stream type is
-      returned. Default is `apple`.
+      returned. Default is `arlo`.
     * **mode_api** - Which api to use to set the base station modes. Default is `auto` which choose an API
       based on camera model. Can also be `v1` and `v2`.
     * **http_connections** - HTTP connection pool size. Default is `20`, set to `None` to default provided
@@ -206,6 +208,7 @@ class PyArlo(object):
                 or device.get("modelId").startswith(MODEL_PRO_3_FLOODLIGHT)
                 or device.get("modelId").startswith(MODEL_PRO_4)
                 or device.get("modelId").startswith(MODEL_ESSENTIAL)
+                or device.get("modelId").startswith(MODEL_ESSENTIAL_INDOOR)
                 or device.get("modelId").startswith(MODEL_WIREFREE_VIDEO_DOORBELL)
             ):
                 parent_id = device.get("parentId", None)
@@ -284,12 +287,12 @@ class PyArlo(object):
         self.vdebug("devices={}".format(pprint.pformat(self._devices)))
 
     def _refresh_camera_thumbnails(self, wait=False):
-        """Request latest camera thumbnails, called at start up. """
+        """Request latest camera thumbnails, called at start up."""
         for camera in self._cameras:
             camera.update_last_image(wait)
 
     def _refresh_camera_media(self, wait=False):
-        """Rebuild cameras media library, called at start up or when day changes. """
+        """Rebuild cameras media library, called at start up or when day changes."""
         for camera in self._cameras:
             camera.update_media(wait)
 
@@ -396,7 +399,7 @@ class PyArlo(object):
             self._lock.notify_all()
 
     def stop(self):
-        """Stop connection to Arlo and logout. """
+        """Stop connection to Arlo and logout."""
         self._st.save()
         self._be.logout()
 
