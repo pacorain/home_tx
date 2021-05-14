@@ -1,3 +1,28 @@
+# System logging to InfluxDB
+
+# Uses a custom component to set up the logging from Python logger
 influx_logger:
   username: hass
   password: !secret influx_password
+
+# The switch to temporarily enable debug logging
+input_boolean:
+  debug_mode:
+    name: Debug mode
+    icon: ios:ant
+    initial_value: 'off'
+
+# The cache for the log level to use when not debugging
+input_text:
+  logging_level_cache:
+    name: Logging level cache
+    initial_value: ''
+
+# The timer that makes "Debug Mode" a temporary mode
+timer:
+  debug_mode:
+    duration: "01:00:00"
+
+# Logging scripts and automations -- specifically debug mode
+script: !include scripts.yaml
+automation: !include automations.yaml

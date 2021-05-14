@@ -1,0 +1,34 @@
+start_debugging:
+  alias: Start debug mode
+  sequence:
+    - alias: Start the debug mode timer
+      service: timer.start
+      target: 
+        entity_id: timer.debug_mode
+    - alias: Remember the current mode
+      service: input_text.set_value
+      target:
+        entity_id: input_text.logging_level_cache
+      data:
+        value: "info"  # TODO: Is there a way to get the actual log level
+    - alias: Enable debug logging
+      service: logger.set_default_level
+      data:
+        level: debug
+
+stop_debugging:
+  alias: Stop debug mode
+  sequence:
+    - alias: Turn off the debugging switch
+      service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.debug_mode
+    - alias: Stop the debugging timer
+      service: timer.cancel
+      target:
+        entity_id: timer.debug_mode
+    - alias: Reset logging level
+      service: logger.set_default_level
+      data:
+        level: "{{ states('input_text.logging_level_cache') }}"
+

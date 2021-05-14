@@ -1,0 +1,25 @@
+- id: debug_mode_switch_on
+  alias: Switch On Debug Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.debug_mode
+      to: "on"
+    - platform: event
+      event_type: timer.started
+      event_data:
+        entity_id: timer.debug_mode
+  action:
+    - service: script.start_debugging
+
+- id: debug_mode_switch_off
+  alias: Switch Off Debug Mode
+  trigger:
+    - platform: state
+      entity_id: input_boolean.debug_mode
+      to: 'off'
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.debug_mode
+  action:
+    - service: script.stop_debugging
