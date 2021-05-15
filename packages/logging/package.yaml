@@ -10,13 +10,13 @@ input_boolean:
   debug_mode:
     name: Debug mode
     icon: ios:ant
-    initial_value: 'off'
+    initial: 'off'
 
 # The cache for the log level to use when not debugging
 input_text:
   logging_level_cache:
     name: Logging level cache
-    initial_value: ''
+    initial: ''
 
 # The timer that makes "Debug Mode" a temporary mode
 timer:
