@@ -56,6 +56,29 @@ ATTR_WEATHER_STATION_RSSI6 = 0x000c
 ATTR_WEATHER_STATION_RSSI7 = 0x000d
 
 class HaloColor(Color):
+    """
+    I was able to get this to work by manually calling the service zha.issue_zigbee_cluster_command with the following data:
+
+    ieee: '00:0d:6f:00:0e:bf:3d:e4'
+    endpoint_id: 2
+    cluster_id: 0x300
+    cluster_type: in
+    command: 6 # move_to_hue_and_saturation
+    command_type: server
+    args:
+        - 0xFF # Orange-ish?
+        - 0xFF # 100% saturation
+        - 0x00
+
+    Now I just have to figure out how to get Home Assistant to generate the same call (and what it's doing instead)
+
+    ---
+
+    From what I can TELL, Home Assistant is reading and writing XY values, but the Halo doesn't change them at all.
+
+    So how to I a) tell HA to use Hue/Sat instead of XY, or b) patch the HaloColor class to execute a different command with calculated args when the
+    other command is received? 
+    """
     pass
 
 class Halo(CustomCluster):
