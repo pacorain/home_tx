@@ -7,6 +7,7 @@ from threading import Thread
 
 from queue import Queue, Empty
 from datetime import datetime
+fromt time import sleep
 
 from logging.handlers import QueueHandler, SysLogHandler
 
@@ -32,7 +33,6 @@ async def async_setup(hass: HomeAssistant, config):
     logger.debug("Setting up InfluxDB Logging")
     handler = QueueHandler(q)
     handler.addFilter(lambda record: not logging.Filter('influxdb_client').filter(record))
-    handler.addFilter(lambda record: not logging.Filter('custom_components.influx_logger'.filter(record)))
     root_logger.addHandler(QueueHandler(q))
     token = "{}:{}".format(config[DOMAIN]["username"], config[DOMAIN]["password"])
     Thread(target=worker, args=(q, hass, token)).start()
@@ -43,23 +43,30 @@ async def async_setup(hass: HomeAssistant, config):
 
 def worker(q, hass: HomeAssistant, token):
     """Runs in alternate thread to handle new logging records."""
+    global wait_seconds
+    wait_seconds = 1
     client = InfluxDBClient(url="http://a0d7b954-influxdb:8086", token=token, retries=5)
     logger.debug("InfluxDB logging client connected!")
     database = "debug/debug"
     batch = []
     while not hass.is_stopping:
-        while len(batch) < 50:
-            try:
-                record = q.get_nowait()
-                entry = parse_record(record)
-                batch.append(entry)
-            except Empty:
-                break
-        if batch:
-            write_client = client.write_api(write_options=SYNCHRONOUS)
-            write_client.write(bucket=database, org="", record=batch)
-            write_client.close()
-            batch = []
+        try:
+            while len(batch) < 50:
+                try:
+                    record = q.get_nowait()
+                    entry = parse_record(record)
+                    batch.append(entry)
+                except Empty:
+                    break
+            if batch:
+                write_client = client.write_api(write_options=SYNCHRONOUS)
+                write_client.write(bucket=database, org="", record=batch)
+                write_client.close()
+                batch = []
+        except influxdb_client.rest.ApiException:
+            logger.error(f"Something went wrong with InfluxDB logging. Will try again in {wait_seconds} seconds.", exc_info=True)
+            time.sleep(wait_seconds)
+            wait_seconds = min(wait_seconds * 2, 1800)
     logger.info("Logging to InfluxDB has stopped")
             
             
