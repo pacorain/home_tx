@@ -4,6 +4,7 @@ from zigpy.zcl.clusters.general import Basic, PowerConfiguration, Identify, Ota,
 from zigpy.zcl.clusters.measurement import TemperatureMeasurement, PressureMeasurement, RelativeHumidity
 from zigpy.zcl.clusters.security import IasWd, IasZone
 from zigpy.zcl.clusters.lighting import Color
+from typing import Any, Callable, Coroutine, Dict, List, Optional, Set, Tuple, Union
 import zigpy.types as t
 
 import logging
@@ -79,7 +80,15 @@ class HaloColor(Color):
     So how to I a) tell HA to use Hue/Sat instead of XY, or b) patch the HaloColor class to execute a different command with calculated args when the
     other command is received? 
     """
-    pass
+    def command(
+        self,
+        command_id: Union[foundation.Command, int, t.uint8_t],
+        *args,
+        manufacturer: Optional[Union[int, t.uint16_t]] = None,
+        expect_reply: bool = True,
+        tsn: Optional[Union[int, t.uint8_t]] = None,
+    )
+        pass
 
 class Halo(CustomCluster):
     cluster_id = CLUSTER_HALO
@@ -92,6 +101,7 @@ class Halo(CustomCluster):
     
     def handle_cluster_request(self, tsn, command_id, args):
         logger.debug("Received Halo cluster request {}: ({}) {}".format(tsn, command_id, args))
+        super().handle_cluster_request(self, tsn, command_id, args)
 
 class HaloControl(CustomCluster):
     cluster_id = 0xFD01
